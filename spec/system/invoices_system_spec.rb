@@ -113,4 +113,14 @@ RSpec.describe 'Invoices', type: :system do
 
     expect(page).to have_content('Invoice was successfully destroyed.')
   end
+
+  it 'logout when user is authenticated' do
+    token = '123456'
+
+    sign_in_as(token)
+
+    click_on 'Log Out'
+
+    expect(page).to have_current_path(root_path)
+  end
 end

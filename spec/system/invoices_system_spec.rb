@@ -4,7 +4,7 @@ RSpec.describe 'Invoices', type: :system do
   it 'shows unauthorized when has no access' do
     visit '/invoices'
 
-    expect(page).to have_content 'Acesso não autorizado!'
+    expect(page).to have_content flash('user.unauthorized')
   end
 
   it 'shows invoices when user is authenticated' do
@@ -35,7 +35,7 @@ RSpec.describe 'Invoices', type: :system do
     click_on button('invoices.create')
 
     expect(Invoice.count - count_before).to eq(1)
-    expect(page).to have_content("Invoice was successfully created.")
+    expect(page).to have_content(flash('invoices.create.success'))
   end
 
   it 'creates an invoice when user is authenticated and go to the url of new' do
@@ -55,7 +55,7 @@ RSpec.describe 'Invoices', type: :system do
     click_on button('invoices.create')
 
     expect(Invoice.count - count_before).to eq(1)
-    expect(page).to have_content("Invoice was successfully created.")
+    expect(page).to have_content(flash('invoices.create.success'))
   end
 
   it 'updates an invoice when user is authenticated and get to route edit' do
@@ -69,7 +69,7 @@ RSpec.describe 'Invoices', type: :system do
 
     click_on button('invoices.update')
 
-    expect(page).to have_content("Invoice was successfully updated.")
+    expect(page).to have_content(flash('invoices.update.success'))
   end
 
   it 'updates an invoice when user is authenticated' do
@@ -81,14 +81,14 @@ RSpec.describe 'Invoices', type: :system do
     visit '/invoices'
 
     all('#invoices>p>a').last.click
-    expect(page).to have_content('Edit this invoice')
+    expect(page).to have_content(button('invoices.edit'))
     click_on button('invoices.edit')
 
     fill_in field('invoices.invoice_number'), with: "#{invoice.invoice_number}1"
 
     click_on button('invoices.update')
 
-    expect(page).to have_content("Invoice was successfully updated.")
+    expect(page).to have_content(flash('invoices.update.success'))
   end
 
   it 'destroys an invoice when user is authenticated and get to route show' do
@@ -100,7 +100,7 @@ RSpec.describe 'Invoices', type: :system do
 
     click_on button('invoices.destroy')
 
-    expect(page).to have_content('Invoice was successfully destroyed.')
+    expect(page).to have_content(flash('invoices.destroy.success'))
   end
 
   it 'destroys an invoice when user is authenticated' do
@@ -112,7 +112,7 @@ RSpec.describe 'Invoices', type: :system do
     all('#invoices>p>a').last.click
     click_on button('invoices.destroy')
 
-    expect(page).to have_content('Invoice was successfully destroyed.')
+    expect(page).to have_content(flash('invoices.destroy.success'))
   end
 
   it 'logout when user is authenticated' do

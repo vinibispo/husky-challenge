@@ -1,3 +1,4 @@
+# controller for tokens
 class TokensController < ApplicationController
   def index
   end

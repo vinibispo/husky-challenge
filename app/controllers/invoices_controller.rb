@@ -1,3 +1,4 @@
+# controller for invoices
 class InvoicesController < ApplicationController
   before_action do
     redirect_to(root_path, notice: I18n.t('flash.user.unauthorized')) if request.format.html? && !session[:current_user_token]

@@ -5,9 +5,11 @@ en:
       tokens:
         token: Token
       invoices:
-        invoice_number: Invoice number
-        invoice_date: Invoice date
-        total_amount_due: Total amount due
+        invoice_number: Invoice Number
+        invoice_date: Invoice Date
+        total_amount_due: Total Amount Due
+        customer_name: Customer Name
+        customer_note: Customer Note
         emails: Emails
     buttons:
       invoices:

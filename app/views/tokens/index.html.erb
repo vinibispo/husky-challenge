@@ -2,11 +2,11 @@
 
 <%= form_with url: tokens_path do |f| %>
   <div>
-    <%= f.label :token %>
+    <%= f.label :token, t(:token, scope: 'forms.labels.tokens') %>
     <%= f.text_field :token %>
   </div>
 
   <div>
-    <%= f.submit 'Log In' %>
+    <%= f.submit t('sign_in', scope: 'forms.buttons') %>
   </div>
 <% end %>

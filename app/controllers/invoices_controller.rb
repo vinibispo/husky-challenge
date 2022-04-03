@@ -1,6 +1,7 @@
+# controller for invoices
 class InvoicesController < ApplicationController
   before_action do
-    redirect_to(root_path, notice: 'Acesso não autorizado!') if request.format.html? && !session[:current_user_token]
+    redirect_to(root_path, notice: I18n.t('flash.user.unauthorized')) if request.format.html? && !session[:current_user_token]
   end
 
   before_action :set_invoice, only: %i[ show edit update destroy ]
@@ -24,7 +25,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
+        format.html { redirect_to invoice_url(@invoice), notice: I18n.t("flash.invoices.create.success") }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,7 +37,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully updated." }
+        format.html { redirect_to invoice_url(@invoice), notice: I18n.t("flash.invoices.update.success") }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,7 +50,7 @@ class InvoicesController < ApplicationController
     @invoice.destroy
 
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: "Invoice was successfully destroyed." }
+      format.html { redirect_to invoices_url, notice: I18n.t("flash.invoices.destroy.success") }
       format.json { head :no_content }
     end
   end

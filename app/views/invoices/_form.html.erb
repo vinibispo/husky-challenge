@@ -12,36 +12,36 @@
   <% end %>
 
   <div>
-    <%= form.label :invoice_number, style: "display: block" %>
+    <%= form.label :invoice_number, t(:invoice_number, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.text_field :invoice_number %>
   </div>
 
   <div>
-    <%= form.label :invoice_date, style: "display: block" %>
+    <%= form.label :invoice_date, t(:invoice_date, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.date_field :invoice_date %>
   </div>
 
   <div>
-    <%= form.label :customer_name, style: "display: block" %>
+    <%= form.label :customer_name, t(:customer_name, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.text_field :customer_name %>
   </div>
 
   <div>
-    <%= form.label :customer_notes, style: "display: block" %>
+    <%= form.label :customer_notes, t(:customer_note, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.text_area :customer_notes %>
   </div>
 
   <div>
-    <%= form.label :total_amount_due, style: "display: block" %>
+    <%= form.label :total_amount_due, t(:total_amount_due, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.text_field :total_amount_due %>
   </div>
 
   <div>
-    <%= form.label :emails, style: "display: block" %>
+    <%= form.label :emails, t(:emails, scope: 'forms.labels.invoices'), style: "display: block" %>
     <%= form.text_field :emails %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit t(create_or_update(action_name), scope: 'forms.buttons.invoices') %>
   </div>
 <% end %>

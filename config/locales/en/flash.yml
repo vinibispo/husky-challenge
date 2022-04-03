@@ -1,0 +1,16 @@
+---
+en:
+  flash:
+    invoices:
+      create:
+        success: Invoice was successfully created. 
+      update:
+        success: Invoice was successfully updated. 
+      destroy:
+        success: Invoice was successfully destroyed.
+    user:
+      unauthorized: Unauthorized access!
+    tokens:
+      create:
+        success: Valid token
+        error: Invalid token

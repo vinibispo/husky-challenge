@@ -12,6 +12,6 @@ module Helpers::I18n
 
   # :reek:UtilityFunction
   def flash(scope)
-  ::I18n.t(scope, scope: 'flash')
+    ::I18n.t(scope, scope: 'flash')
   end
 end

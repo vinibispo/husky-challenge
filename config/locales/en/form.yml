@@ -1,0 +1,22 @@
+---
+en:
+  forms:
+    labels:
+      tokens:
+        token: Token
+      invoices:
+        invoice_number: Invoice number
+        invoice_date: Invoice date
+        total_amount_due: Total amount due
+        emails: Emails
+    buttons:
+      invoices:
+        create: Create Invoice
+        update: Update Invoice
+        edit: Edit this invoice
+        show: Show this invoice
+        destroy: Destroy this invoice
+        new: New invoice
+      sign_in: Log In
+      sign_out: Log Out
+

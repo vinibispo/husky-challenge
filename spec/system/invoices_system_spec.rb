@@ -14,7 +14,7 @@ RSpec.describe 'Invoices', type: :system do
     visit '/invoices'
 
     expect(page).to have_content 'Invoices'
-    expect(page).to have_content 'New invoice'
+    expect(page).to have_content button('invoices.new')
   end
 
   it 'creates an invoice when user is authenticated' do
@@ -24,15 +24,15 @@ RSpec.describe 'Invoices', type: :system do
     sign_in_as(token)
     visit '/invoices'
 
-    click_on 'New invoice'
+    click_on button('invoices.new')
 
     invoice = build(:invoice)
-    fill_in 'Invoice number', with: invoice.invoice_number
-    fill_in 'Invoice date', with: invoice.invoice_date
-    fill_in 'Total amount due', with: invoice.total_amount_due
-    fill_in 'Emails', with: invoice.emails
+    fill_in field('invoices.invoice_number'), with: invoice.invoice_number
+    fill_in field('invoices.invoice_date'), with: invoice.invoice_date
+    fill_in field('invoices.total_amount_due'), with: invoice.total_amount_due
+    fill_in field('invoices.emails'), with: invoice.emails
 
-    click_on 'Create Invoice'
+    click_on button('invoices.create')
 
     expect(Invoice.count - count_before).to eq(1)
     expect(page).to have_content("Invoice was successfully created.")
@@ -46,12 +46,13 @@ RSpec.describe 'Invoices', type: :system do
     visit '/invoices/new'
 
     invoice = build(:invoice)
-    fill_in 'Invoice number', with: invoice.invoice_number
-    fill_in 'Invoice date', with: invoice.invoice_date
-    fill_in 'Total amount due', with: invoice.total_amount_due
-    fill_in 'Emails', with: invoice.emails
 
-    click_on 'Create Invoice'
+    fill_in field('invoices.invoice_number'), with: invoice.invoice_number
+    fill_in field('invoices.invoice_date'), with: invoice.invoice_date
+    fill_in field('invoices.total_amount_due'), with: invoice.total_amount_due
+    fill_in field('invoices.emails'), with: invoice.emails
+
+    click_on button('invoices.create')
 
     expect(Invoice.count - count_before).to eq(1)
     expect(page).to have_content("Invoice was successfully created.")
@@ -64,9 +65,9 @@ RSpec.describe 'Invoices', type: :system do
     sign_in_as(token)
     visit "/invoices/#{invoice.id}/edit"
 
-    fill_in 'Invoice number', with: "#{invoice.invoice_number}1"
+    fill_in field('invoices.invoice_number'), with: "#{invoice.invoice_number}1"
 
-    click_on 'Update Invoice'
+    click_on button('invoices.update')
 
     expect(page).to have_content("Invoice was successfully updated.")
   end
@@ -81,11 +82,11 @@ RSpec.describe 'Invoices', type: :system do
 
     all('#invoices>p>a').last.click
     expect(page).to have_content('Edit this invoice')
-    click_on 'Edit this invoice'
+    click_on button('invoices.edit')
 
-    fill_in 'Invoice number', with: "#{invoice.invoice_number}1"
+    fill_in field('invoices.invoice_number'), with: "#{invoice.invoice_number}1"
 
-    click_on 'Update Invoice'
+    click_on button('invoices.update')
 
     expect(page).to have_content("Invoice was successfully updated.")
   end
@@ -97,7 +98,7 @@ RSpec.describe 'Invoices', type: :system do
     sign_in_as(token)
     visit "/invoices/#{invoice.id}"
 
-    click_on 'Destroy this invoice'
+    click_on button('invoices.destroy')
 
     expect(page).to have_content('Invoice was successfully destroyed.')
   end
@@ -109,7 +110,7 @@ RSpec.describe 'Invoices', type: :system do
     sign_in_as(token)
 
     all('#invoices>p>a').last.click
-    click_on 'Destroy this invoice'
+    click_on button('invoices.destroy')
 
     expect(page).to have_content('Invoice was successfully destroyed.')
   end
@@ -119,7 +120,7 @@ RSpec.describe 'Invoices', type: :system do
 
     sign_in_as(token)
 
-    click_on 'Log Out'
+    click_on button('sign_out')
 
     expect(page).to have_current_path(root_path)
   end

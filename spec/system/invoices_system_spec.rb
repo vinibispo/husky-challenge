@@ -63,26 +63,8 @@ RSpec.describe 'Invoices', type: :system do
     invoice = create(:invoice)
 
     sign_in_as(token)
+
     visit "/invoices/#{invoice.id}/edit"
-
-    fill_in field('invoices.invoice_number'), with: "#{invoice.invoice_number}1"
-
-    click_on button('invoices.update')
-
-    expect(page).to have_content(flash('invoices.update.success'))
-  end
-
-  it 'updates an invoice when user is authenticated' do
-    token = '123456'
-    invoice = create(:invoice)
-
-    sign_in_as(token)
-
-    visit '/invoices'
-
-    all('#invoices>p>a').last.click
-    expect(page).to have_content(button('invoices.edit'))
-    click_on button('invoices.edit')
 
     fill_in field('invoices.invoice_number'), with: "#{invoice.invoice_number}1"
 
@@ -98,18 +80,6 @@ RSpec.describe 'Invoices', type: :system do
     sign_in_as(token)
     visit "/invoices/#{invoice.id}"
 
-    click_on button('invoices.destroy')
-
-    expect(page).to have_content(flash('invoices.destroy.success'))
-  end
-
-  it 'destroys an invoice when user is authenticated' do
-    token = '123456'
-    create(:invoice)
-
-    sign_in_as(token)
-
-    all('#invoices>p>a').last.click
     click_on button('invoices.destroy')
 
     expect(page).to have_content(flash('invoices.destroy.success'))

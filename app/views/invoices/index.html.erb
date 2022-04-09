@@ -4,7 +4,7 @@
 
 <div id="invoices">
   <% @invoices.each do |invoice| %>
-    <%= render invoice %>
+    <%= render 'invoices/invoice', invoice: invoice %>
     <p>
       <%= link_to "Show this invoice", invoice %>
     </p>

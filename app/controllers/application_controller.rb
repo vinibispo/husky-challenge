@@ -1,6 +1,5 @@
 # application controller
 class ApplicationController < ActionController::Base
-
   private
 
   def redirect_if_is_not_authenticated

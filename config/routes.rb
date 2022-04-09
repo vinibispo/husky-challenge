@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :invoices do
       get :logout, on: :collection
     end
+
+    resources :users, only: %i[create]
     resources :tokens
   end
   root 'tokens/index#call'

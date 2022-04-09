@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       get :logout, on: :collection
     end
 
-    resources :users, only: %i[create]
+    resources :users, only: %i[create new]
     resources :tokens
   end
   root 'tokens/index#call'

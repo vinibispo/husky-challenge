@@ -3,7 +3,7 @@
 <h1>Invoices</h1>
 
 <div id="invoices">
-  <% @invoices.each do |invoice| %>
+  <% invoices.each do |invoice| %>
     <%= render 'invoices/invoice', invoice: invoice %>
     <p>
       <%= link_to "Show this invoice", invoice %>

@@ -14,13 +14,5 @@ RSpec.describe FormHelper, type: :helper do
       expected = 'update'
       expect(result).to eq(expected)
     end
-
-    it 'sould return :submit when object is nil' do
-      invoice = nil
-      result = helper.create_or_update(invoice)
-      expected = :submit
-
-      expect(result).to eq(expected)
-    end
   end
 end

@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @invoice %>
+<%= render 'invoices/invoice', invoice: @invoice %>
 
 <div>
   <%= link_to "Edit this invoice", edit_invoice_path(@invoice) %> |

@@ -11,6 +11,8 @@ RSpec.describe '/users' do
       expect(response).to be_successful
 
       expect(parsed_body["email"]).to eq(user_attributes[:email])
+
+      expect(parsed_body["token"]).to_not be_nil
     end
   end
 end

@@ -4,7 +4,11 @@ RSpec.describe '/users' do
     it 'should return success' do
       user_attributes = attributes_for(:user)
 
-      post users_path, params: { user: user_attributes }
+      post "#{users_path}.json", params: { user: user_attributes }
+
+      parsed_body = JSON.parse(response.body)
+
+      expect(response).to be_successful
     end
   end
 end

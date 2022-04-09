@@ -12,7 +12,6 @@ class Invoices::UpdateController < ApplicationController
 
   private
 
-
   def which_screen_should_render(format)
     if @invoice.update(Invoice::Params.to_save(params))
       format.html { redirect_to invoice_url(@invoice), notice: I18n.t("flash.invoices.update.success") }

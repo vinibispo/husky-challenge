@@ -9,6 +9,8 @@ RSpec.describe '/users' do
       parsed_body = JSON.parse(response.body)
 
       expect(response).to be_successful
+
+      expect(parsed_body["email"]).to eq(user_attributes[:email])
     end
   end
 end

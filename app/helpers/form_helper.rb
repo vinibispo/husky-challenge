@@ -1,10 +1,10 @@
 # form helper for forms
 module FormHelper
   # :reek:UtilityFunction
-  def create_or_update(action_name)
-    return 'create' if action_name == 'new'
-    return 'update' if action_name == 'edit'
+  def create_or_update(object)
+    return :submit if object.nil?
+    return 'update' if object.persisted?
 
-    action_name
+    'create'
   end
 end

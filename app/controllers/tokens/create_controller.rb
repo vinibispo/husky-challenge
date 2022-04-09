@@ -1,9 +1,6 @@
-# controller for tokens
-class TokensController < ApplicationController
-  def index
-  end
-
-  def create
+# create controller for tokens
+class Tokens::CreateController < ApplicationController
+  def call
     if params[:token] == '123456'
       session[:current_user_token] = params[:token]
 

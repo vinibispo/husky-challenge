@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  resources :tokens
-
-  resources :invoices do
-    collection do
-      get :logout
+  modular_routes do
+    resources :invoices do
+      get :logout, on: :collection
     end
+    resources :tokens
   end
-
-  root "tokens#index"
+  root 'tokens/index#call'
 end

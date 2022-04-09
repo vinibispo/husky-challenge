@@ -68,6 +68,6 @@ class InvoicesController < ApplicationController
     end
 
     def invoice_params
-      params.require(:invoice).permit(:invoice_number, :invoice_date, :customer_name, :customer_notes, :total_amount_due, :emails)
+      Invoice::Params.to_save(params)
     end
 end

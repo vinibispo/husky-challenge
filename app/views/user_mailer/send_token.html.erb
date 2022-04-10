@@ -1,0 +1,8 @@
+<h1><%= I18n.t('.hi', email: user.email) %></h1>
+<p>
+  <%= I18n.t('.token') %>
+</p>
+
+<p>
+  <%= link_to I18n.t('.call_to_action'), new_session_url %> <%= I18n.t('.type_token') %> <strong><%= user.token %></strong><%= I18n.t('.accessing') %>
+</p>

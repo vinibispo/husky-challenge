@@ -8,6 +8,7 @@
 
 # Offense count: 6
 # This cop supports safe auto-correction (--auto-correct).
+require: rubocop-rails
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'
@@ -123,7 +124,7 @@ Style/ClassAndModuleChildren:
 # Configuration parameters: AllowedConstants.
 Style/Documentation:
   Exclude:
-    - 'db'
+    - 'db/migrate/*'
 
 # Offense count: 3
 # This cop supports safe auto-correction (--auto-correct).

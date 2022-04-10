@@ -9,7 +9,16 @@ RSpec.describe User::Register::NormalizeParams do
 
     expect(result.failure?).to be true
     expect(result[:message]).to eq(expected)
+  end
 
+  it 'should return failure when has invalid email' do
+    params = ActionController::Parameters.new({ user: { email: 'invalid-email' } })
 
+    result = User::Register::NormalizeParams.call(params:)
+
+    expected = I18n.t('email.invalid', scope: 'activerecord.errors.models.user.attributes')
+
+    expect(result.failure?).to be true
+    expect(result[:message]).to eq(expected)
   end
 end

@@ -1,4 +1,4 @@
-class User::Register::Create < Micro::Case
+class User::Register::CreateRecord < Micro::Case
   attribute :user
   attribute :email
   validates :user, kind: { of: [User, NilClass] }

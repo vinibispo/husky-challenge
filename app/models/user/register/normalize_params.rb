@@ -6,7 +6,7 @@ class User::Register::NormalizeParams < Micro::Case
   ValidateEmail = ->(email) { email =~ URI::MailTo::EMAIL_REGEXP }
 
   def call!
-    return Failure :blank_email, result: { message: I18n.t('email.blank', scope: 'activerecord.errors.models.user.attributes') } if user_params[:email]
+    return Failure :blank_email, result: { message: I18n.t('email.blank', scope: 'activerecord.errors.models.user.attributes') } if user_params[:email].blank?
   end
 
   private

@@ -8,6 +8,9 @@ en:
         success: Invoice was successfully updated. 
       destroy:
         success: Invoice was successfully destroyed.
+    users:
+      create:
+        success: User was successfully created.
     user:
       unauthorized: Unauthorized access!
     tokens:

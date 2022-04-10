@@ -11,6 +11,8 @@ class User::Register::NormalizeParams < Micro::Case
     return Success result: { email: user_params[:email].downcase } if ValidateEmail[user_params[:email]]
 
     Failure :invalid_email, result: { message: I18n.t('email.invalid', scope: 'activerecord.errors.models.user.attributes') }
+  rescue ActionController::ParameterMissing => e
+    Failure :parameter_missing, result: { message: e.message }
   end
 
   private

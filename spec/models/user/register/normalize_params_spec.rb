@@ -5,6 +5,11 @@ RSpec.describe User::Register::NormalizeParams do
 
     result = User::Register::NormalizeParams.call(params:)
 
+    expected = I18n.t('email.blank', scope: 'activerecord.errors.models.user.attributes')
+
     expect(result.failure?).to be true
+    expect(result[:message]).to eq(expected)
+
+
   end
 end

@@ -1,7 +1,7 @@
 # create controller for users
 class Users::CreateController < ApplicationController
   def call
-    user = User.new(user_params)
+    user = User.new(User::Params.to_save(params))
     respond_to do |format|
       which_screen_should_render(format, user)
     end
@@ -9,12 +9,7 @@ class Users::CreateController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email)
-  end
-
   def which_screen_should_render(format, user)
-
     if user.save
       format.html { redirect_to invoices_url, notice: I18n.t("flash.users.create.success") }
       format.json { render 'users/show', locals: { user: }, status: :created }

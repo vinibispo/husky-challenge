@@ -4,6 +4,6 @@ RSpec.describe 'Invoices', type: :system do
     user = build(:user)
     visit '/users/new'
 
-    fill_in :email, with: user.email
+    fill_in User.human_attribute_name('email'), with: user.email
   end
 end

@@ -19,6 +19,9 @@ en:
         show: Show this invoice
         destroy: Destroy this invoice
         new: New invoice
+      users:
+        create: Register User
+        back: Go Back
       sign_in: Log In
       sign_out: Log Out
 

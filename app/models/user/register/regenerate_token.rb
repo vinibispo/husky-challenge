@@ -6,7 +6,7 @@ class User::Register::RegenerateToken < Micro::Case
   validates :user, kind: { of: [User, NilClass] }
 
   def call!
-    user.generate_token if user.present?
+    user.regenerate_token if user.present?
     Success result: {email:, user:}
   end
 end

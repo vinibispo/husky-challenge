@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :register, on: :collection
     end
     resources :tokens
+    resources :sessions, only: %i[new create destroy]
   end
   root 'tokens/index#call'
 end

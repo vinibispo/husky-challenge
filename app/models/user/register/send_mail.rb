@@ -1,2 +1,2 @@
-class User::Register::SendMail
+class User::Register::SendMail < Micro::Case
 end

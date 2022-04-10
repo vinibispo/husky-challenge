@@ -1,0 +1,10 @@
+---
+en:
+  activerecord:
+    models:
+      invoice: Invoice
+      user: User
+    attributes:
+      user:
+        email: Email
+        token: Token

@@ -12,4 +12,16 @@ RSpec.describe User::Register::Create do
     expect(result.success?).to be true
     expect(result.data).to eq(expected)
   end
+
+  it 'should do nothing when there is user' do
+    email = 'johndoe@husky.io'
+    user = create(:user, email:)
+
+    result = User::Register::Create.call(user:, email:)
+
+    expected = { user: }
+
+    expect(result.success?).to be true
+    expect(result.data).to eq(expected)
+  end
 end

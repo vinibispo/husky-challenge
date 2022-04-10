@@ -1,2 +1,2 @@
-class User::Register::Create
+class User::Register::Create < Micro::Case
 end

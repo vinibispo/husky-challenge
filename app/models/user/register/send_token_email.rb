@@ -1,4 +1,4 @@
-class User::Register::SendMail < Micro::Case
+class User::Register::SendTokenEmail < Micro::Case
   attribute :user
   attribute :mailer, default: ->(value) { value || UserMailer }
   validates :user, kind: User

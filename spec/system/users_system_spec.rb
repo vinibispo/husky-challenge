@@ -8,7 +8,7 @@ RSpec.describe 'Invoices', type: :system do
 
     click_on button('users.create')
 
-    expect(page).to have_content(flash('users.create.success'))
-    expect(page).to have_current_path(invoices_path)
+    expect(page).to have_content(flash('user.unauthorized'))
+    expect(page).to have_current_path(root_path)
   end
 end

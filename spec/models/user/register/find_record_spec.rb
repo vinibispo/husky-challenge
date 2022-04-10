@@ -1,9 +1,9 @@
 require 'rails_helper'
-RSpec.describe User::Register::Find do
+RSpec.describe User::Register::FindRecord do
   it 'should return success when there is no user' do
     email = 'johndoe@husky.io'
 
-    result = User::Register::Find.call(email:)
+    result = User::Register::FindRecord.call(email:)
 
     expected = { user: nil, email: 'johndoe@husky.io' }
 
@@ -15,7 +15,7 @@ RSpec.describe User::Register::Find do
     email = 'johndoe@husky.io'
     user = create(:user, email:)
 
-    result = User::Register::Find.call(email:)
+    result = User::Register::FindRecord.call(email:)
 
     expected = { user:, email: }
 

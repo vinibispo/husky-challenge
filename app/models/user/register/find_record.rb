@@ -1,5 +1,5 @@
 # find for register for user
-class User::Register::Find < Micro::Case
+class User::Register::FindRecord < Micro::Case
   attribute :email
   def call!
     user = User.find_by(email:)

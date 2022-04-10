@@ -47,7 +47,7 @@ gem "modular_routes"
 # gem "image_processing", "~> 1.2"
 
 gem 'kind'
-gem 'u-case', '~> 4.5.1'
+gem 'u-case', '~> 4.5.1', require: 'u-case/with_activemodel_validation'
 gem 'u-struct'
 
 group :development, :test do

@@ -43,4 +43,15 @@ RSpec.describe User::Register::NormalizeParams do
     expect(result.failure?).to be true
     expect(result[:message]).to eq(expected)
   end
+
+  it 'should return failure when has no valid type of params' do
+    params = {}
+
+    result = User::Register::NormalizeParams.call(params:)
+
+    expected = ['Params must be a kind of ActionController::Parameters']
+
+    expect(result.failure?).to be true
+    expect(result[:errors].map(&:full_message)).to eq(expected)
+  end
 end

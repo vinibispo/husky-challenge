@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe User::Register::Flow do
   it 'should get user params and return user created' do
-    params = ActionController::Parameters.new({ user: { email: 'johndoe@husky.io' }})
+    params = ActionController::Parameters.new({ user: { email: 'johndoe@husky.io' } })
 
     result = User::Register::Flow.call(params:)
 
@@ -18,7 +18,7 @@ RSpec.describe User::Register::Flow do
     params = ActionController::Parameters.new({ user: { email: } })
 
     result = User::Register::Flow.call(params:)
-    
+
     user.reload
     expected = { user: }
 

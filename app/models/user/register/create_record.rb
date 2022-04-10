@@ -1,3 +1,4 @@
+# create record class for register for user
 class User::Register::CreateRecord < Micro::Case
   attribute :user
   attribute :email

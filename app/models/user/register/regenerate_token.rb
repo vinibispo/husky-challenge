@@ -1,3 +1,4 @@
+# regenerate token for register for user
 class User::Register::RegenerateToken < Micro::Case
   attribute :email
   attribute :user
@@ -7,6 +8,6 @@ class User::Register::RegenerateToken < Micro::Case
 
   def call!
     user.regenerate_token if user.present?
-    Success result: {email:, user:}
+    Success result: { email:, user: }
   end
 end

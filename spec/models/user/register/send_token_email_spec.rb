@@ -11,4 +11,3 @@ RSpec.describe User::Register::SendTokenEmail do
     expect(result.data).to eq(expected)
   end
 end
-

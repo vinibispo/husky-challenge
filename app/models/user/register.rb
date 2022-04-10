@@ -1,0 +1,2 @@
+module User::Register
+end

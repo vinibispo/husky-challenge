@@ -21,4 +21,16 @@ RSpec.describe User::Register::NormalizeParams do
     expect(result.failure?).to be true
     expect(result[:message]).to eq(expected)
   end
+
+  it 'should return success when has valid email' do
+    params = ActionController::Parameters.new({ user: { email: 'johndoe@husky.io' } })
+
+    result = User::Register::NormalizeParams.call(params:)
+
+    expected = 'johndoe@husky.io'
+    
+    expect(result.success?).to be true
+
+    expect(result[:email]).to eq(expected)
+  end
 end

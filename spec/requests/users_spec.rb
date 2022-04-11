@@ -46,7 +46,7 @@ RSpec.describe '/users' do
 
         expected = 'invalid'
 
-      expect(response.body).to include(expected)
+        expect(response.body).to include(expected)
       end
     end
   end

@@ -35,7 +35,5 @@ RSpec.describe User::Register::CreateRecord do
 
     expect(result.failure?).to be true
     expect(result[:errors].map(&:full_message)).to eq(expected)
-
-    
   end
 end

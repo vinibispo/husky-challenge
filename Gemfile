@@ -47,7 +47,7 @@ gem "modular_routes"
 # gem "image_processing", "~> 1.2"
 
 gem 'kind'
-gem 'u-case', '~> 4.5.1'
+gem 'u-case', '~> 4.5.1', require: 'u-case/with_activemodel_validation'
 gem 'u-struct'
 
 group :development, :test do
@@ -58,7 +58,6 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rubocop-rails', require: false
   gem 'web-console'
 
@@ -76,5 +75,6 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', require: false
   gem 'webdrivers'
 end

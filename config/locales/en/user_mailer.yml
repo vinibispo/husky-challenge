@@ -1,0 +1,8 @@
+en:
+  user_mailer:
+    send_token:
+      hi: Hi, %{email}
+      token: If you are receiving this email, that means that you have signed up recently 
+      call_to_action: Click here
+      type_token: Type the token
+      access: for accessing.

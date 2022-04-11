@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render 'shared/flash' %>
     <% if session[:current_user_token] %>
       <p style="text-align: right"><%= link_to(t('sign_out', scope: 'forms.buttons'), logout_invoices_path) %></p>
     <% end %>

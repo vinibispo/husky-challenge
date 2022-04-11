@@ -1,0 +1,10 @@
+
+<div style="color: red;"><%= notice %></div>
+<h1>New User</h1>
+
+
+<%= render '/users/form', user: user %>
+
+<div>
+  <%= link_to I18n.t('back', scope: 'forms.buttons.users'), root_path %>
+</div>

@@ -4,15 +4,12 @@ RSpec.describe '/users' do
     it 'should return success' do
       user_attributes = attributes_for(:user)
 
-      post "#{users_path}.json", params: { user: user_attributes }
+      post users_path, params: { user: user_attributes }
 
-      parsed_body = JSON.parse(response.body)
+      expect(response).to redirect_to(root_path)
+      follow_redirect!
 
-      expect(response).to be_successful
-
-      expect(parsed_body["email"]).to eq(user_attributes[:email])
-
-      expect(parsed_body["token"]).to_not be_nil
+      expect(response.body).to include(flash('users.create.success'))
     end
   end
 end

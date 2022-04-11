@@ -6,7 +6,8 @@ RSpec.describe User::Register::Flow do
     result = User::Register::Flow.call(params:)
 
     user = User.last
-    expected = { user: }
+    message = I18n.t("flash.users.create.success")
+    expected = { user:, message: }
 
     expect(result.success?).to be true
     expect(result.data).to eq(expected)
@@ -20,7 +21,8 @@ RSpec.describe User::Register::Flow do
     result = User::Register::Flow.call(params:)
 
     user.reload
-    expected = { user: }
+    message = I18n.t("flash.users.create.success")
+    expected = { user:, message: }
 
     expect(result.success?).to be true
     expect(result.data).to eq(expected)

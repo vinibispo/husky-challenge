@@ -5,7 +5,8 @@ RSpec.describe User::Register::SendTokenEmail do
 
     result = User::Register::SendTokenEmail.call(user:)
 
-    expected = { user: }
+    message = I18n.t("flash.users.create.success")
+    expected = { user: , message: }
 
     expect(result.success?).to be true
     expect(result.data).to eq(expected)

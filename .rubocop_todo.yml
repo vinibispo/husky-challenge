@@ -13,8 +13,11 @@ Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'
 
-# Offense count: 2
-# This cop supports safe auto-correction (--auto-correct).
+Style/MultilineBlockChain:
+  Enabled: false
+
+  # Offense count: 2
+  # This cop supports safe auto-correction (--auto-correct).
 Layout/EmptyLines:
   Exclude:
     - 'config/environments/development.rb'

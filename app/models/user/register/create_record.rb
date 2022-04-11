@@ -11,6 +11,6 @@ class User::Register::CreateRecord < Micro::Case
 
     return Success result: { user: new_user } if new_user.save
 
-    Failure :invalid_email, result: { errors: new_user.errors }
+    Failure :invalid_data, result: { errors: new_user.errors }
   end
 end

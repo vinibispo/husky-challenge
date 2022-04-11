@@ -10,7 +10,7 @@ en:
         success: Invoice was successfully destroyed.
     users:
       create:
-        success: User was successfully created.
+        success: Token was successfully generated. Plase verify your email because we have sent a token for accessing.
     user:
       unauthorized: Unauthorized access!
     tokens:

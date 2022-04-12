@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  has_secure_token
+  has_many :user_tokens, inverse_of: :user, dependent: :destroy
   validates :email, presence: true, uniqueness: true
 end

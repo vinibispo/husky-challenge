@@ -8,7 +8,7 @@ gem 'attr_keyring'
 #
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.2'
-
+gem 'rails-env'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
 
@@ -47,7 +47,7 @@ gem "modular_routes"
 # gem "image_processing", "~> 1.2"
 
 gem 'kind'
-gem 'signed_url'
+gem 'url_signature'
 gem 'u-case', '~> 4.5.1', require: 'u-case/with_activemodel_validation'
 gem 'u-struct'
 

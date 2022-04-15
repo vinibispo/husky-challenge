@@ -5,7 +5,7 @@ class UserToken::Activate::FetchUser < Micro::Case
 
   def call!
     user = user_token.user
-    return Failure :no_user, result: { message: 'There is no user asssociated' } if user.blank?
+    return Failure :no_user, result: { message: I18n.t('flash.user_tokens.activate.fetch_user.error') } if user.blank?
 
     Success result: { user:, user_token: }
   end

@@ -5,7 +5,8 @@ class User::Register::GenerateToken < Micro::Case
   validates :user, kind: User
 
   def call!
-    user.user_tokens.create
-    Success result: { user: }
+    user_token = user.user_tokens.create
+    token = user_token.token
+    Success result: { user:, token: }
   end
 end

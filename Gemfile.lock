@@ -184,6 +184,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-env (2.0.2)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
     railties (7.0.2.3)
@@ -257,6 +258,7 @@ GEM
       u-attributes (>= 2.7, < 3.0)
     u-struct (1.1.0)
     unicode-display_width (2.1.0)
+    url_signature (0.0.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -294,6 +296,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.6.4)
   rails (~> 7.0.2)
+  rails-env
   rspec-rails (= 6.0.0.rc1)
   rubocop-rails
   selenium-webdriver
@@ -302,6 +305,7 @@ DEPENDENCIES
   tzinfo-data
   u-case (~> 4.5.1)
   u-struct
+  url_signature
   web-console
   webdrivers
 

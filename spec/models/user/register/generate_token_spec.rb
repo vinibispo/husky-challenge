@@ -7,7 +7,8 @@ RSpec.describe User::Register::GenerateToken do
     result = User::Register::GenerateToken.call(user:)
 
     user.reload
-    expected = { user: }
+    token = UserToken.last.token
+    expected = { user:, token: }
 
     expect(result.success?).to be true
     expect(result.data).to eq(expected)

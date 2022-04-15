@@ -11,6 +11,12 @@ en:
     users:
       create:
         success: Token was successfully generated. Plase verify your email because we have sent a token for accessing.
+    user_tokens:
+      activate:
+        fetch_user:
+          error: There is no user asssociated.
+        fetch_record:
+          error: There is no token for this user.
     user:
       unauthorized: Unauthorized access!
     tokens:

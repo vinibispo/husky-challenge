@@ -1,8 +1,8 @@
-<h1><%= I18n.t('.hi', email: user.email) %></h1>
+<h1><%= I18n.t('user_mailer.send_token.hi', email: user.email) %></h1>
 <p>
-  <%= I18n.t('.token') %>
+  <%= I18n.t('user_mailer.send_token.token') %>
 </p>
 
 <p>
-  <%= link_to I18n.t('.call_to_action'), new_session_url %> <%= I18n.t('.type_token') %> <strong><%= user.token %></strong><%= I18n.t('.accessing') %>
+  <%= link_to I18n.t('user_mailer.send_token.call_to_action'), url %> <%= I18n.t('user_mailer.send_token.type_token') %> <strong><%= token %></strong><%= I18n.t('user_mailer.send_token.access') %>
 </p>

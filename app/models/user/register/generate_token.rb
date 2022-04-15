@@ -7,6 +7,6 @@ class User::Register::GenerateToken < Micro::Case
   def call!
     user_token = user.user_tokens.create
     token = user_token.token
-    Success result: { user:, token:  }
+    Success result: { user:, token: }
   end
 end

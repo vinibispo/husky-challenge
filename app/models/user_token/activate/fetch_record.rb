@@ -1,3 +1,4 @@
+# fetch record for user
 class UserToken::Activate::FetchRecord < Micro::Case
   attribute :token
   validates :token, kind: String

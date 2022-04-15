@@ -1,3 +1,4 @@
+# activate class for user_token
 class UserToken::Activate < Micro::Case
   attribute :user
   attribute :user_token

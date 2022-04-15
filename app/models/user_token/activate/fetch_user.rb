@@ -1,3 +1,4 @@
+# fetch user for activate user_token
 class UserToken::Activate::FetchUser < Micro::Case
   attribute :user_token
   validates :user_token, kind: UserToken

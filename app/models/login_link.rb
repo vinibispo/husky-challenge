@@ -1,3 +1,4 @@
+# link for login
 module LoginLink
   def self.create!(email:, token:)
     url = Rails.application.routes.url_helpers.new_session_url(email:, token:)

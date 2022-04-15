@@ -7,6 +7,5 @@ class UserToken::Activate::FetchUser < Micro::Case
     return Failure :no_user, result: { message: 'There is no user asssociated' } if user.blank?
 
     Success result: { user:, user_token: }
-    
   end
 end

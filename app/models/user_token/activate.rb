@@ -1,7 +1,7 @@
 class UserToken::Activate < Micro::Case
   attribute :user
   attribute :user_token
-  
+
   validates :user, kind: User
   validates :user_token, kind: UserToken
 

@@ -5,7 +5,7 @@ RSpec.describe UserToken, type: :model do
   it { should have_secure_token }
   it 'should activate' do
     user = create(:user)
-    user_token = create(:user_token, confirmed_at: nil, user: )
+    user_token = create(:user_token, confirmed_at: nil, user:)
 
     user_token.activate!
 

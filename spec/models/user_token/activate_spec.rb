@@ -11,6 +11,5 @@ RSpec.describe UserToken::Activate do
     expect(result.success?).to be true
 
     expect(result.data).to eq(expected_result)
-    
   end
 end

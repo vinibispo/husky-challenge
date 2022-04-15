@@ -13,13 +13,12 @@ RSpec.describe LoginLink do
 
   it 'should be a invalid link when token is revoked' do
     user = create(:user)
-    user_token = create(:user_token, revoked_at: DateTime.now, user: )
+    user_token = create(:user_token, revoked_at: DateTime.now, user:)
 
     link = LoginLink.create!(email: user.email, token: user_token.token)
 
     result = LoginLink.valid?(link)
 
     expect(result).to be false
-
   end
 end

@@ -1,4 +1,4 @@
-Rails.env.on(:development) do
+Rails.env.on(:development, :test) do
   Rails.application.routes.default_url_options = {
     host: 'localhost',
     protocol: :http,

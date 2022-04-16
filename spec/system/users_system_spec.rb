@@ -34,7 +34,8 @@ RSpec.describe 'Users', type: :system do
 
     click_on button('sessions.create')
 
-    expect(page).to have_current_path(new_session_path)
+    expect(page).to have_current_path(sessions_path)
+    expect(page).to have_content(flash('sessions.create.get_token.error'))
   end
 
   it 'should login user directly' do

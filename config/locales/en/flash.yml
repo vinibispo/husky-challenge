@@ -13,6 +13,10 @@ en:
         success: Token was successfully generated. Plase verify your email because we have sent a token for accessing.
     sessions:
       create:
+        get_token:
+          error: Token does not exist or you have not activated your token. Please verify if you have activated your token. 
+        get_user:
+          error: User does not exist.
         success: User logged successfully. Welcome to Invoice Generator.
     user_tokens:
       activate:

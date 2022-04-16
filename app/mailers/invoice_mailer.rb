@@ -1,9 +1,12 @@
 class InvoiceMailer < ApplicationMailer
   def created
-    @invoice = params[:invoice]
+    invoice = params[:invoice]
 
-    emails = @invoice.emails.split(',')
+    emails = invoice.emails.split(',')
 
-    mail(to: emails, subject: "Invoice #{@invoice.id}")
+    attachments["invoice-#{invoice.id}-#{SecureRandom.uuid}.pdf"] = { mime_type: 'application/pdf', content: invoice.documents.last.blob.download }
+    mail(to: emails, subject: "Invoice #{invoice.id} from #{invoice.customer_name}") do |format|
+      format.html { render 'invoice_mailer/created', locals: { invoice: invoice } }
+    end
   end
 end

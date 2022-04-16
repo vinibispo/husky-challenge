@@ -1,3 +1,4 @@
+# get record for create for session
 class Session::Create::GetRecord < Micro::Case
   attribute :user_token
   validates :user_token, kind: UserToken

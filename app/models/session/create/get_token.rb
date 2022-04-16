@@ -1,3 +1,4 @@
+# get token for create for session
 class Session::Create::GetToken < Micro::Case
   attribute :session
   validates :session, kind: Session

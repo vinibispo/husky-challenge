@@ -6,7 +6,8 @@ class Sessions::NewController < ApplicationController
       session[:current_user_token] = params[:token]
       redirect_to invoices_path
     else
-      render 'sessions/new'
+      session_model = Session.new 
+      render 'sessions/new', locals: { session: session_model }
     end
   end
 end

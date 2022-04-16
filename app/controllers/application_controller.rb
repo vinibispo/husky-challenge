@@ -1,6 +1,7 @@
 # application controller
 class ApplicationController < ActionController::Base
   add_flash_types :danger, :success
+
   private
 
   def redirect_if_is_not_authenticated

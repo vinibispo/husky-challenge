@@ -7,7 +7,7 @@ class Sessions::NewController < ApplicationController
       redirect_to invoices_path
     else
       session_model = Session.new 
-      render 'sessions/new', locals: { session: session_model }
+      render 'sessions/new', locals: { session_model: session_model }
     end
   end
 end

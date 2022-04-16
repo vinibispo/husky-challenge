@@ -17,80 +17,173 @@ RSpec.describe "/invoices", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
+  describe "Not authenticated" do
+    describe "with expired token" do
+      
+      let(:valid_attributes) {
+      { emails: 'email@example.com' }
+      }
+      before do
+        user = create(:user)
+        user_token = create(:user_token, user:, confirmed_at: DateTime.now)
+        @user = user
+        post sessions_url, params: { session: { token: user_token.token } }
+        user_token.update(revoked_at: DateTime.now)
+      end
 
-  before { post tokens_url, params: { token: '123456' } }
+      describe "GET /index" do
+        it "does not render successful response" do
+          @user.invoices.create! valid_attributes
+          get invoices_url
+          expect(response).to_not be_successful
+        end
+      end
 
-  describe "JSON" do
+      describe "POST /create" do
 
+        it "should not succeed response" do
+          post invoices_url, params: { invoice: valid_attributes }
+          expect(response).to_not be_successful
+        end
+      end
+    end
+
+    describe "with no token" do
+      let(:valid_attributes)  { 
+        { emails: 'email@example.com' }
+      }
+      before do
+        user = create(:user)
+        user_token = create(:user_token, user:, confirmed_at: DateTime.now)
+        @user = user
+      end
+
+      describe "POST /create" do
+        it 'should not succeed response' do
+          post invoices_url, params: { invoice: valid_attributes }
+          expect(response).to_not be_successful
+        end
+      end
+    end
+  end
+  describe "Authenticated" do
+    
     let(:valid_attributes) {
-      { emails: 'email@example.com,johndoe@husky.io' }
+    { emails: 'email@example.com' }
     }
 
     let(:invalid_attributes) {
-      skip("Add a hash of attributes invalid for your model")
+    {name: "Test"}
     }
+
+    before do
+      user = create(:user)
+      user_token = create(:user_token, user:, confirmed_at: DateTime.now)
+      @user = user
+      post sessions_url, params: { session: { token: user_token.token } }
+    end
 
     describe "GET /index" do
       it "renders a successful response" do
-        count_before = Invoice.count
-        get "#{invoices_url}.json"
-
+        @user.invoices.create! valid_attributes
+        get invoices_url
         expect(response).to be_successful
-
-        parsed_body = JSON.parse(body)
-        expect(count_before).to eq(parsed_body.count)
       end
     end
 
     describe "GET /show" do
       it "renders a successful response" do
-        invoice = Invoice.create! valid_attributes
-        get "#{invoice_url(invoice)}.json"
+        invoice = @user.invoices.create! valid_attributes
+        get invoice_url(invoice)
         expect(response).to be_successful
-        parsed_body = JSON.parse(body)
-        expect(invoice.id).to eq(parsed_body["id"])
+      end
+    end
+
+    describe "GET /new" do
+      it "renders a successful response" do
+        get new_invoice_url
+        expect(response).to be_successful
+      end
+    end
+
+    describe "GET /edit" do
+      it "renders a successful response" do
+        invoice = @user.invoices.create! valid_attributes
+        get edit_invoice_url(invoice)
+        expect(response).to be_successful
       end
     end
 
     describe "POST /create" do
-      it "renders a successful response" do
-        attrs = attributes_for(:invoice)
+      context "with valid parameters" do
+        it "creates a new Invoice" do
+          expect {
+            post invoices_url, params: { invoice: valid_attributes }
+          }.to change(Invoice, :count).by(1)
+        end
 
-        post "#{invoices_url}.json", params: { invoice: attrs }
-        parsed_body = JSON.parse(body)
+        it "redirects to the created invoice" do
+          post invoices_url, params: { invoice: valid_attributes }
+          expect(response).to redirect_to(invoice_url(Invoice.last))
+        end
+      end
 
-        expect(response).to be_successful
+      context "with invalid parameters" do
+        it "does not create a new Invoice" do
+          expect {
+            post invoices_url, params: { invoice: invalid_attributes }
+          }.to change(Invoice, :count).by(0)
+        end
 
-        expect(parsed_body["id"]).to_not be_nil
-        expect(parsed_body["name"]).to eq(attrs[:name])
-
+        it "renders a successful response (i.e. to display the 'new' template)" do
+          post invoices_url, params: { invoice: invalid_attributes }
+          expect(response).to be_successful
+        end
       end
     end
 
-    describe "PUT /update" do
-      it "renders a successful response" do
-        invoice = Invoice.create! valid_attributes
+    describe "PATCH /update" do
+      context "with valid parameters" do
+        let(:new_attributes) {
+          skip("Add a hash of attributes valid for your model")
+        }
 
-        attributes = attributes_for(:invoice)
+        it "updates the requested invoice" do
+          invoice = @user.invoices.create! valid_attributes
+          patch invoice_url(invoice), params: { invoice: new_attributes }
+          invoice.reload
+          skip("Add assertions for updated state")
+        end
 
-        put "#{invoice_url(invoice)}.json", params: { invoice: attributes }
+        it "redirects to the invoice" do
+          invoice = @user.invoices.create! valid_attributes
+          patch invoice_url(invoice), params: { invoice: new_attributes }
+          invoice.reload
+          expect(response).to redirect_to(invoice_url(invoice))
+        end
+      end
 
-        parsed_body = JSON.parse(body)
-
-        expect(response).to be_successful
-        expect(parsed_body["id"]).to eq(invoice.id)
-        expect(parsed_body["name"]).to eq(attributes[:name])
-
+      context "with invalid parameters" do
+        it "renders a successful response (i.e. to display the 'edit' template)" do
+          invoice = @user.invoices.create! valid_attributes
+          patch invoice_url(invoice), params: { invoice: invalid_attributes }
+          expect(response).to be_successful
+        end
       end
     end
 
     describe "DELETE /destroy" do
-      it 'renders a successful response' do
-        invoice = Invoice.create! valid_attributes
+      it "destroys the requested invoice" do
+        invoice = @user.invoices.create! valid_attributes
+        expect {
+          delete invoice_url(invoice)
+        }.to change(Invoice, :count).by(-1)
+      end
 
-        delete "#{invoice_url(invoice)}.json"
-
-        expect(response).to be_successful
+      it "redirects to the invoices list" do
+        invoice = @user.invoices.create! valid_attributes
+        delete invoice_url(invoice)
+        expect(response).to redirect_to(invoices_url)
       end
     end
   end

@@ -21,6 +21,20 @@ RSpec.describe 'Users', type: :system do
     fill_in User.human_attribute_name('token'), with: user_token.token
 
     click_on button('sessions.create')
+    expect(page).to have_current_path(invoices_path)
+  end
+
+  it 'should not login user' do
+    user = create(:user)
+    token = '123456'
+
+    visit '/sessions/new'
+
+    fill_in User.human_attribute_name('token'), with: token
+
+    click_on button('sessions.create')
+
+    expect(page).to have_current_path(new_session_path)
   end
 
   it 'should login user directly' do

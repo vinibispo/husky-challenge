@@ -1,5 +1,5 @@
-<%= form_for(session) do |f| %>
+<%= form_for(session_model) do |f| %>
   <%= f.label :token %>
   <%= f.text_field :token %>
-  <%= f.submit I18n.t(create_or_update(session), scope: 'forms.buttons.sessions') %>
+  <%= f.submit I18n.t(create_or_update(session_model), scope: 'forms.buttons.sessions') %>
 <% end %>

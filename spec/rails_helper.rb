@@ -11,6 +11,7 @@ require_relative 'support/factory_bot'
 require_relative 'support/shoulda_matchers'
 require_relative 'support/system_spec'
 require_relative 'support/helper'
+require_relative 'support/capybara'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

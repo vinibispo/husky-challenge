@@ -29,7 +29,6 @@ RSpec.describe 'Invoices', type: :system do
     expect(page).to have_current_path(new_invoice_path)
 
     expect(page).to have_content('New')
-
   end
 
   it 'creates an invoice when user is authenticated and go to the url of new' do

@@ -2,11 +2,9 @@
 class Invoices::IndexController < ApplicationController
   def call
     ::Invoice::Fetch::Flow.call(token: session[:current_user_token])
-      .on_failure(:invalid_attributes) { redirect_no_token_error }
-      .on_failure(:blank_token) { |error| redirect_error(error[:message]) }
-      .on_failure(:no_token) { |error| redirect_error(error[:message]) }
-      .on_failure(:no_user) { |error| redirect_error(error[:message]) }
-      .on_success { |data| render_successfully(data) }
+                          .on_failure(:invalid_attributes) { redirect_no_token_error }
+                          .on_failure(:no_token) { |error| redirect_error(error[:message]) }
+                          .on_success { |data| render_successfully(data) }
   end
 
   private
@@ -19,7 +17,6 @@ class Invoices::IndexController < ApplicationController
   def redirect_no_token_error
     redirect_to root_path
     flash[:danger] = I18n.t('flash.user.unauthorized')
-
   end
 
   def render_successfully(data)

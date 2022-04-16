@@ -7,8 +7,8 @@ class Sessions::CreateController < ApplicationController
       redirect_to invoices_path
       flash[:notice] = I18n.t('create', scope: 'flash.sessions')
     end.on_failure do |result|
-      render 'sessions/new', locals: { session_model: result[:session] }
       flash[:notice] = result[:message]
+      render 'sessions/new', locals: { session_model: result[:session] }, status: :unprocessable_entity
     end
   end
 

@@ -18,7 +18,7 @@ class Sessions::CreateController < ApplicationController
   def redirect_successfully
     session[:current_user_token] = session_params[:token]
     redirect_to invoices_path
-    flash[:success] = I18n.t('create', scope: 'flash.sessions')
+    flash[:success] = I18n.t('create.success', scope: 'flash.sessions')
   end
 
   def render_error(data)

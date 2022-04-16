@@ -8,7 +8,8 @@ RSpec.describe 'Invoices', type: :system do
   end
 
   it 'shows invoices when user is authenticated' do
-    token = '123456'
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
 
     sign_in_as(token)
     visit '/invoices'
@@ -17,30 +18,23 @@ RSpec.describe 'Invoices', type: :system do
     expect(page).to have_content button('invoices.new')
   end
 
-  it 'creates an invoice when user is authenticated' do
-    token = '123456'
-    count_before = Invoice.count
+  it 'should go to the new invoice url' do
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
 
     sign_in_as(token)
-    visit '/invoices'
 
     click_on button('invoices.new')
 
-    invoice = build(:invoice)
-    fill_in field('invoices.invoice_number'), with: invoice.invoice_number
-    fill_in field('invoices.invoice_date'), with: invoice.invoice_date
-    fill_in field('invoices.total_amount_due'), with: invoice.total_amount_due
-    fill_in field('invoices.emails'), with: invoice.emails
+    expect(page).to have_current_path(new_invoice_path)
 
-    click_on button('invoices.create')
+    expect(page).to have_content('New')
 
-    expect(Invoice.count - count_before).to eq(1)
-    expect(page).to have_content(flash('invoices.create.success'))
   end
 
   it 'creates an invoice when user is authenticated and go to the url of new' do
-    token = '123456'
-    count_before = Invoice.count
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
 
     sign_in_as(token)
     visit '/invoices/new'
@@ -54,13 +48,13 @@ RSpec.describe 'Invoices', type: :system do
 
     click_on button('invoices.create')
 
-    expect(Invoice.count - count_before).to eq(1)
     expect(page).to have_content(flash('invoices.create.success'))
   end
 
   it 'updates an invoice when user is authenticated and get to route edit' do
-    token = '123456'
-    invoice = create(:invoice)
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
+    invoice = create(:invoice, user:)
 
     sign_in_as(token)
 
@@ -74,8 +68,9 @@ RSpec.describe 'Invoices', type: :system do
   end
 
   it 'destroys an invoice when user is authenticated and get to route show' do
-    token = '123456'
-    invoice = create(:invoice)
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
+    invoice = create(:invoice, user:)
 
     sign_in_as(token)
     visit "/invoices/#{invoice.id}"
@@ -86,7 +81,8 @@ RSpec.describe 'Invoices', type: :system do
   end
 
   it 'logout when user is authenticated' do
-    token = '123456'
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
 
     sign_in_as(token)
 

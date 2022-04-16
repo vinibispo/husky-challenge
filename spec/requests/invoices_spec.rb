@@ -145,14 +145,14 @@ RSpec.describe "/invoices", type: :request do
     describe "PATCH /update" do
       context "with valid parameters" do
         let(:new_attributes) {
-          skip("Add a hash of attributes valid for your model")
+        { emails: "vini@husky.io" }
         }
 
         it "updates the requested invoice" do
           invoice = @user.invoices.create! valid_attributes
           patch invoice_url(invoice), params: { invoice: new_attributes }
           invoice.reload
-          skip("Add assertions for updated state")
+          expect(invoice.emails).to eq(new_attributes[:emails])
         end
 
         it "redirects to the invoice" do

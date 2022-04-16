@@ -1,9 +1,28 @@
 # index controller for invoice
 class Invoices::IndexController < ApplicationController
   def call
-    return redirect_if_is_not_authenticated if not_authenticated_and_html?
+    ::Invoice::Fetch::Flow.call(token: session[:current_user_token])
+      .on_failure(:invalid_attributes) { redirect_no_token_error }
+      .on_failure(:blank_token) { |error| redirect_error(error[:message]) }
+      .on_failure(:no_token) { |error| redirect_error(error[:message]) }
+      .on_failure(:no_user) { |error| redirect_error(error[:message]) }
+      .on_success { |data| render_successfully(data) }
+  end
 
-    invoices = Invoice.all
-    render 'invoices/index', locals: { invoices: }
+  private
+
+  def redirect_error(message)
+    redirect_to root_path
+    flash[:danger] = message
+  end
+
+  def redirect_no_token_error
+    redirect_to root_path
+    flash[:danger] = I18n.t('flash.user.unauthorized')
+
+  end
+
+  def render_successfully(data)
+    render 'invoices/index', locals: { invoices: data[:invoices] }
   end
 end

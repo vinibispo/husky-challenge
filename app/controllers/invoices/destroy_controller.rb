@@ -6,7 +6,7 @@ class Invoices::DestroyController < ApplicationController
     invoice = Invoice.find(params[:id])
     invoice.destroy
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: I18n.t("flash.invoices.destroy.success") }
+      format.html { redirect_to invoices_url, success: I18n.t("flash.invoices.destroy.success") }
       format.json { head :no_content }
     end
   end

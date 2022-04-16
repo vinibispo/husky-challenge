@@ -15,7 +15,7 @@ class Invoices::CreateController < ApplicationController
 
   def which_screen_should_render(format, invoice)
     if invoice.save
-      format.html { redirect_to invoice_url(invoice), notice: I18n.t("flash.invoices.create.success") }
+      format.html { redirect_to invoice_url(invoice), success: I18n.t("flash.invoices.create.success") }
       format.json { render 'invoices/show', locals: { invoice: }, status: :created, location: invoice }
     else
       format.html { render 'invoices/new', locals: { invoice: }, status: :unprocessable_entity }

@@ -11,6 +11,9 @@ en:
     users:
       create:
         success: Token was successfully generated. Plase verify your email because we have sent a token for accessing.
+    sessions:
+      create:
+        success: User logged successfully. Welcome to Invoice Generator.
     user_tokens:
       activate:
         fetch_user:

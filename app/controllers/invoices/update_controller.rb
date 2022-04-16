@@ -14,7 +14,7 @@ class Invoices::UpdateController < ApplicationController
 
   def which_screen_should_render(format, invoice)
     if invoice.update(Invoice::Params.to_save(params))
-      format.html { redirect_to invoice_url(invoice), notice: I18n.t("flash.invoices.update.success") }
+      format.html { redirect_to invoice_url(invoice), success: I18n.t("flash.invoices.update.success") }
       format.json { render 'invoices/show', locals: { invoice: }, status: :ok, location: invoice }
     else
       format.html { render 'invoices/edit', locals: { invoice: }, status: :unprocessable_entity }

@@ -1,9 +1,11 @@
 # application controller
 class ApplicationController < ActionController::Base
+  add_flash_types :danger, :success
   private
 
   def redirect_if_is_not_authenticated
-    redirect_to(root_path, notice: I18n.t('flash.user.unauthorized'))
+    redirect_to(root_path)
+    flash[:danger] = I18n.t('flash.user.unauthorized')
   end
 
   def authenticated?

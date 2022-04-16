@@ -25,7 +25,6 @@ RSpec.describe 'Users', type: :system do
   end
 
   it 'should not login user' do
-    user = create(:user)
     token = '123456'
 
     visit '/sessions/new'
@@ -41,12 +40,11 @@ RSpec.describe 'Users', type: :system do
   it 'should login user directly' do
     user = create(:user)
     user_token = create(:user_token, user:)
-    UserMailer.with(user: user, token: user_token.token).send_token.deliver_now
+    UserMailer.with(user:, token: user_token.token).send_token.deliver_now
 
     click_email_link(0)
 
     expect(page).to have_current_path(invoices_path)
     expect(page).to have_content('Invoices')
-
   end
 end

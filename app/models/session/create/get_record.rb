@@ -4,9 +4,9 @@ class Session::Create::GetRecord < Micro::Case
 
   def call!
     user = user_token.user
-    session = Session.new(token: user_token.token) #add just for retrieving new page
+    session = Session.new(token: user_token.token) # add just for retrieving new page
     return Failure :no_user, result: { message: I18n.t('get_record.error', scope: 'sessions.create'), session: } if user.blank?
 
-    Success result: { user: user }
+    Success result: { user: }
   end
 end

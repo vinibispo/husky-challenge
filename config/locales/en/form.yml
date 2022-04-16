@@ -23,6 +23,8 @@ en:
         create: Register User
         back: Go Back
         new: Sign Up
+      sessions:
+        create: Sign In
       sign_in: Log In
       sign_out: Log Out
 

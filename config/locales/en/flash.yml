@@ -2,6 +2,10 @@
 en:
   flash:
     invoices:
+      get_token:
+        error: There is no token for this user.
+      get_authentication:
+        error: There is no user associated
       create:
         success: Invoice was successfully created. 
       update:

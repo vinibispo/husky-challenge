@@ -1,3 +1,4 @@
+# destroy controller for sessions
 class Sessions::DestroyController < ApplicationController
   def call
     session.delete(:current_user_token)

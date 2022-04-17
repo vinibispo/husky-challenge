@@ -2,8 +2,8 @@
 class Invoices::ShowController < ApplicationController
   def call
     Invoice::Show::Flow.call(id: params[:id], token: session[:current_user_token])
-      .on_failure(:not_found) { render_not_found }
-      .on_success { |result| render_invoice(result[:invoice]) }
+                       .on_failure(:not_found) { render_not_found }
+                       .on_success { |result| render_invoice(result[:invoice]) }
   end
 
   private

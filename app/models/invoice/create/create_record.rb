@@ -6,14 +6,13 @@ class Invoice::Create::CreateRecord < Micro::Case
 
   def call!
     invoice = user.invoices.new(invoice_params)
-    if invoice.save
-      return Success result: { invoice: }
-    end
+    return Success result: { invoice: } if invoice.save
 
     Failure :invoice_error, result: { invoice: }
   end
 
   private
+
   def invoice_params
     ::Invoice::Params.to_save(params)
   end

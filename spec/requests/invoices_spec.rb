@@ -19,9 +19,9 @@ RSpec.describe "/invoices", type: :request do
   # adjust the attributes here as well.
   describe "Not authenticated" do
     describe "with expired token" do
-      
+
       let(:valid_attributes) {
-      { emails: 'email@example.com' }
+        { emails: 'email@example.com' }
       }
       before do
         user = create(:user)
@@ -56,7 +56,7 @@ RSpec.describe "/invoices", type: :request do
     end
 
     describe "with no token" do
-      let(:valid_attributes)  { 
+      let(:valid_attributes) {
         { emails: 'email@example.com' }
       }
       before do
@@ -81,13 +81,13 @@ RSpec.describe "/invoices", type: :request do
     end
   end
   describe "Authenticated" do
-    
+
     let(:valid_attributes) {
-    { emails: 'email@example.com' }
+      { emails: 'email@example.com' }
     }
 
     let(:invalid_attributes) {
-    {emails: ''}
+      { emails: '' }
     }
 
     before do
@@ -119,7 +119,6 @@ RSpec.describe "/invoices", type: :request do
         expect(response).to be_successful
       end
     end
-
 
     describe "POST /create" do
       context "with valid parameters" do

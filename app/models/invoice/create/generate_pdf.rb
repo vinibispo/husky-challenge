@@ -3,8 +3,8 @@ class Invoice::Create::GeneratePdf < Micro::Case
   def call!
     generate_pdf
     Success result: { invoice: }
-  rescue => e
-      Failure :pdf_error, result: { message: e.message }
+  rescue StandardError => e
+    Failure :pdf_error, result: { message: e.message }
   end
 
   private

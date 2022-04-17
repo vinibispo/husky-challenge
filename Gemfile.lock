@@ -254,6 +254,9 @@ GEM
     thor (1.2.1)
     timeout (0.2.0)
     ttfunk (1.7.0)
+    turbo-rails (1.0.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     u-attributes (2.8.0)
@@ -308,6 +311,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers (~> 5.0)
   simplecov
+  turbo-rails
   tzinfo-data
   u-case (~> 4.5.1)
   u-struct

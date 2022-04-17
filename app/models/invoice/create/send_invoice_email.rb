@@ -1,3 +1,4 @@
+# send invoice email step for create for invoice
 class Invoice::Create::SendInvoiceEmail < Micro::Case
   attribute :invoice
   attribute :mailer, default: ->(value) { value || InvoiceMailer }

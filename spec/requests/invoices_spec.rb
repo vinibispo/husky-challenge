@@ -61,7 +61,7 @@ RSpec.describe "/invoices", type: :request do
       }
       before do
         user = create(:user)
-        user_token = create(:user_token, user:, confirmed_at: DateTime.now)
+        create(:user_token, user:, confirmed_at: DateTime.now)
         @user = user
       end
 

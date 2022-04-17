@@ -1,3 +1,4 @@
+# get_authentication module for invoice
 class Invoice::GetAuthentication < Micro::Case
   attribute :token
   validates :token, kind: String

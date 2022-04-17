@@ -18,4 +18,8 @@ class InvoiceMailer < ApplicationMailer
       format.html { render 'invoice_mailer/created', locals: { invoice: } }
     end
   end
+
+  def logger(result)
+    Rails.logger.warn "#{result} invoice_mailer#created"
+  end
 end

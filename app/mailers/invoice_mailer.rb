@@ -1,9 +1,25 @@
+# mailer for invoice
 class InvoiceMailer < ApplicationMailer
   def created
-    @invoice = params[:invoice]
+    Invoice::PrepareInvoiceEmail
+      .call(invoice: params[:invoice])
+      .on_failure { |result| logger(result) }
+      .on_success { |result| render_email(result) }
+  end
 
-    emails = @invoice.emails.split(',')
+  private
 
-    mail(to: emails, subject: "Invoice #{@invoice.id}")
+  def render_email(result)
+    invoice = params[:invoice]
+    attachments["invoice-#{invoice.id}-#{SecureRandom.uuid}.pdf"] = result[:attachment]
+    emails = result[:emails]
+
+    mail(to: emails, subject: "Invoice #{invoice.id} from #{invoice.customer_name}") do |format|
+      format.html { render 'invoice_mailer/created', locals: { invoice: } }
+    end
+  end
+
+  def logger(result)
+    Rails.logger.warn "#{result} invoice_mailer#created"
   end
 end

@@ -3,23 +3,31 @@
 # create controller for invoices
 class Invoices::CreateController < ApplicationController
   def call
-    return redirect_if_is_not_authenticated if not_authenticated_and_html?
-
-    invoice = Invoice.new(Invoice::Params.to_save(params))
-    respond_to do |format|
-      which_screen_should_render(format, invoice)
-    end
+    ::Invoice::Create::Flow.call(token: session[:current_user_token], params:)
+                           .on_failure(:invalid_attributes) { redirect_no_token_error }
+                           .on_failure(:no_token) { |error| redirect_error(error[:message]) }
+                           .on_failure(:invoice_error) { |error| render_error(error) }
+                           .on_success { |data| redirect_successfully(data) }
   end
 
   private
 
-  def which_screen_should_render(format, invoice)
-    if invoice.save
-      format.html { redirect_to invoice_url(invoice), success: I18n.t("flash.invoices.create.success") }
-      format.json { render 'invoices/show', locals: { invoice: }, status: :created, location: invoice }
-    else
-      format.html { render 'invoices/new', locals: { invoice: }, status: :unprocessable_entity }
-      format.json { render json: invoice.errors, status: :unprocessable_entity }
-    end
+  def render_error(data)
+    render 'invoices/new', locals: { invoice: data[:invoice] }
+  end
+
+  def redirect_error(message)
+    redirect_to root_path
+    flash[:danger] = message
+  end
+
+  def redirect_no_token_error
+    redirect_to root_path
+    flash[:danger] = I18n.t('flash.user.unauthorized')
+  end
+
+  def redirect_successfully(data)
+    redirect_to invoice_url(data[:invoice])
+    flash[:success] = data[:message]
   end
 end

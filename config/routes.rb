@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   modular_routes do
-    resources :invoices do
+    resources :invoices, only: %i[index new create show] do
       get :logout, on: :collection
     end
 

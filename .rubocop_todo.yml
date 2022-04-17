@@ -9,6 +9,10 @@
 # Offense count: 6
 # This cop supports safe auto-correction (--auto-correct).
 require: rubocop-rails
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'
@@ -82,7 +86,10 @@ Layout/SpaceInsidePercentLiteralDelimiters:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
-  Max: 97
+  Max: 130
+
+Metrics/AbcSize:
+  Max: 18
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.

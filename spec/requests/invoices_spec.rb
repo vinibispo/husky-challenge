@@ -73,7 +73,7 @@ RSpec.describe "/invoices", type: :request do
     }
 
     let(:invalid_attributes) {
-    {name: "Test"}
+    {emails: ''}
     }
 
     before do
@@ -167,7 +167,7 @@ RSpec.describe "/invoices", type: :request do
         it "renders a successful response (i.e. to display the 'edit' template)" do
           invoice = @user.invoices.create! valid_attributes
           patch invoice_url(invoice), params: { invoice: invalid_attributes }
-          expect(response).to be_successful
+          expect(response).to have_http_status(:unprocessable_entity)
         end
       end
     end

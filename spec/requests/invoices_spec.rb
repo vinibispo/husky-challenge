@@ -120,13 +120,6 @@ RSpec.describe "/invoices", type: :request do
       end
     end
 
-    describe "GET /edit" do
-      it "renders a successful response" do
-        invoice = @user.invoices.create! valid_attributes
-        get edit_invoice_url(invoice)
-        expect(response).to be_successful
-      end
-    end
 
     describe "POST /create" do
       context "with valid parameters" do
@@ -156,49 +149,5 @@ RSpec.describe "/invoices", type: :request do
       end
     end
 
-    describe "PATCH /update" do
-      context "with valid parameters" do
-        let(:new_attributes) {
-        { emails: "vini@husky.io" }
-        }
-
-        it "updates the requested invoice" do
-          invoice = @user.invoices.create! valid_attributes
-          patch invoice_url(invoice), params: { invoice: new_attributes }
-          invoice.reload
-          expect(invoice.emails).to eq(new_attributes[:emails])
-        end
-
-        it "redirects to the invoice" do
-          invoice = @user.invoices.create! valid_attributes
-          patch invoice_url(invoice), params: { invoice: new_attributes }
-          invoice.reload
-          expect(response).to redirect_to(invoice_url(invoice))
-        end
-      end
-
-      context "with invalid parameters" do
-        it "renders a successful response (i.e. to display the 'edit' template)" do
-          invoice = @user.invoices.create! valid_attributes
-          patch invoice_url(invoice), params: { invoice: invalid_attributes }
-          expect(response).to have_http_status(:unprocessable_entity)
-        end
-      end
-    end
-
-    describe "DELETE /destroy" do
-      it "destroys the requested invoice" do
-        invoice = @user.invoices.create! valid_attributes
-        expect {
-          delete invoice_url(invoice)
-        }.to change(Invoice, :count).by(-1)
-      end
-
-      it "redirects to the invoices list" do
-        invoice = @user.invoices.create! valid_attributes
-        delete invoice_url(invoice)
-        expect(response).to redirect_to(invoices_url)
-      end
-    end
   end
 end

@@ -1,3 +1,4 @@
+# mailer for invoice
 class InvoiceMailer < ApplicationMailer
   def created
     invoice = params[:invoice]

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HuskyChallenge</title>
+    <title>Invoice Generator</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,8 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="text-white bg-dark">
+    <%= image_tag 'husky.svg', width: 100, class: 'm-3' %>
     <%= render 'shared/flash' %>
     <% if session[:current_user_token] %>
       <p style="text-align: right"><%= button_to t('sign_out', scope: 'forms.buttons'), session_path(Current.user&.id), method: :delete %></p>

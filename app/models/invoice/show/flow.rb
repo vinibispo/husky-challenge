@@ -10,13 +10,6 @@ class Invoice::Show::Flow < Micro::Case
   def call!
     AuthenticationFlow
       .call(token:)
-    get_invoice
-
-  end
-
-  private 
-
-  def get_invoice
     invoice = Invoice.find(id)
     Success result: { invoice: }
   rescue ActiveRecord::RecordNotFound => e

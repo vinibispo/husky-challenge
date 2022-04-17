@@ -9,6 +9,10 @@
 # Offense count: 6
 # This cop supports safe auto-correction (--auto-correct).
 require: rubocop-rails
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/*'
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'

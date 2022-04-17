@@ -1,5 +1,12 @@
 
-<%= render 'invoices/invoice', invoice: invoice %>
+<div id="invoices" class="mt-4">
+  <%= render 'invoices/invoice', invoice: invoice %>
+  <% invoice.documents.each do |file| %>
+    <%= link_to rails_blob_path(file, disposition: 'attachment') do %>
+      Download file
+    <% end %>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Back to invoices", invoices_path %>

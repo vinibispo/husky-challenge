@@ -1,3 +1,4 @@
+# list records step for fetch for invoice
 class Invoice::Fetch::ListRecords < Micro::Case
   attribute :user
   validates :user, kind: User

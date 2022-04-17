@@ -1,3 +1,4 @@
+# create record step for create for invoice
 class Invoice::Create::CreateRecord < Micro::Case
   attribute :user
   attribute :params

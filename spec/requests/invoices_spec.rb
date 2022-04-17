@@ -53,6 +53,16 @@ RSpec.describe "/invoices", type: :request do
           expect(response).to_not be_successful
         end
       end
+
+      describe "GET /show" do
+        context "when has no record" do
+          it "should have http status not_found" do
+            get invoice_url(1)
+
+            expect(response).to have_http_status :not_found
+          end
+        end
+      end
     end
 
     describe "with no token" do

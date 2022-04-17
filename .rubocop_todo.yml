@@ -86,7 +86,7 @@ Layout/SpaceInsidePercentLiteralDelimiters:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 # IgnoredMethods: refine
 Metrics/BlockLength:
-  Max: 113
+  Max: 130
 
 Metrics/AbcSize:
   Max: 18

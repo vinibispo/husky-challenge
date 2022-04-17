@@ -88,6 +88,9 @@ Layout/SpaceInsidePercentLiteralDelimiters:
 Metrics/BlockLength:
   Max: 113
 
+Metrics/AbcSize:
+  Max: 18
+
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
 Metrics/CyclomaticComplexity:

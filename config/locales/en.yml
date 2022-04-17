@@ -1,5 +1,9 @@
 ---
 en:
+  publics:
+    home:
+      generate: Generate access token
+      login: Login using token
   activerecord:
     errors:
       messages:

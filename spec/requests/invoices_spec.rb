@@ -46,6 +46,13 @@ RSpec.describe "/invoices", type: :request do
           expect(response).to_not be_successful
         end
       end
+
+      describe "GET /new" do
+        it "does not render successful response" do
+          get new_invoice_url
+          expect(response).to_not be_successful
+        end
+      end
     end
 
     describe "with no token" do
@@ -61,6 +68,13 @@ RSpec.describe "/invoices", type: :request do
       describe "POST /create" do
         it 'should not succeed response' do
           post invoices_url, params: { invoice: valid_attributes }
+          expect(response).to_not be_successful
+        end
+      end
+
+      describe "GET /new" do
+        it 'should not succeed response' do
+          get new_invoice_url
           expect(response).to_not be_successful
         end
       end

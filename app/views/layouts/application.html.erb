@@ -11,13 +11,7 @@
   </head>
 
   <body class="text-white bg-dark">
-    <%= link_to image_tag('husky.svg', width: 100, class: 'm-3'), root_path %>
-
-    <% if Current.user.present? %>
-      <p class='text-right d-flex justify-content-end'>
-      <%= button_to t('sign_out', scope: 'forms.buttons'), session_url(Current.user.id), method: :delete, class: "btn btn-danger"  %>
-      </p>
-    <% end %>
+    <%=  render 'shared/navbar' %>
     <div class="container">
       <%= render 'shared/flash' %>
       <%= yield %>

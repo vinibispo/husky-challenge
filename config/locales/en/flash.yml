@@ -22,6 +22,8 @@ en:
         get_user:
           error: User does not exist.
         success: User logged successfully. Welcome to Invoice Generator.
+      destroy:
+        success: User logget out successfully.
     user_tokens:
       activate:
         fetch_user:

@@ -1,3 +1,4 @@
+# generate pdf step for create for invoice
 class Invoice::Create::GeneratePdf < Micro::Case
   attribute :invoice
   def call!

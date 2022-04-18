@@ -1,3 +1,4 @@
+# send_emails for invoices controller
 class Invoices::SendEmailsController < ApplicationController
   def call
     Invoice::SendEmails::Flow

@@ -1,3 +1,4 @@
+# home controller for publics
 class Publics::HomeController < ApplicationController
   def call
     Invoice::GetToken.call(token: session[:current_user_token])

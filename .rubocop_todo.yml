@@ -89,7 +89,7 @@ Metrics/BlockLength:
   Max: 130
 
 Metrics/AbcSize:
-  Max: 18
+  Max: 30
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.

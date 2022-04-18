@@ -1,3 +1,4 @@
+# send invoice email for send emails for invoice
 class Invoice::SendEmails::SendInvoiceEmail < Micro::Case
   attribute :invoice
   attribute :emails

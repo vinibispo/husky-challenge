@@ -39,6 +39,8 @@ gem 'jbuilder'
 # gem "bcrypt", "~> 3.1.7"
 
 gem 'ransack'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'turbo-rails'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -60,6 +62,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails', '= 6.0.0.rc1'
+  gem 'rswag-specs'
 end
 
 group :development do

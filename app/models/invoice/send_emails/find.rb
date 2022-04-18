@@ -1,3 +1,4 @@
+# find module for send emails for invoice
 class Invoice::SendEmails::Find < Micro::Case
   attribute :user
   attribute :params

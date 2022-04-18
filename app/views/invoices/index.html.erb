@@ -1,7 +1,24 @@
 
 <h1>Invoices</h1>
 
-<div id="invoices" class="mb-2">
+<%= search_form_for q do |f| %>
+  <div class="form-group mt-3">
+    <%= f.label :invoice_number_cont, class: "col-sm-2 control-label" %>
+    <%= f.search_field :invoice_number_cont, class: "col-sm-10 form-control" %>
+  </div>
+  <div class="form-group mt-3">
+    <%= f.label :invoice_date_gteq, class: "col-sm-2 control-label" %>
+    <%= f.date_field :invoice_date_gteq, class: "col-sm-10 form-control" %>
+  </div>
+  <div class="form-group mt-3">
+    <%= f.label :invoice_date_lteq, class: "col-sm-2 control-label" %>
+    <%= f.date_field :invoice_date_lteq, class: "col-sm-10 form-control" %>
+  </div>
+  <div class="form-group mt-3">
+    <%= f.submit "Search", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<div id="invoices" class="mb-2 mt-5">
   <% invoices.each do |invoice| %>
     <%= render 'invoices/invoice', invoice: invoice %>
     <p>

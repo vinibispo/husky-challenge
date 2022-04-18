@@ -50,6 +50,22 @@ RSpec.describe 'Invoices', type: :system do
     expect(page).to have_content(flash('invoices.create.success'))
   end
 
+  it 'sends emails when click on send emails in show page' do
+    user = create(:user)
+    token = create(:user_token, user:, confirmed_at: DateTime.now).token
+
+    sign_in_as(token)
+    invoice = create(:invoice, user:)
+    Invoice::Create::GeneratePdf.call(invoice:)
+
+    visit "/invoices/#{invoice.id}"
+    fill_in Invoice.human_attribute_name('emails'), with: "vini@google.com,test@google.com"
+
+    click_on button('invoices.send_emails')
+    expect(page).to have_content(flash('invoices.send_emails.success'))
+    expect(page).to have_current_path(invoice_path(invoice))
+  end
+
   it 'logout when user is authenticated' do
     user = create(:user)
     token = create(:user_token, user:, confirmed_at: DateTime.now).token

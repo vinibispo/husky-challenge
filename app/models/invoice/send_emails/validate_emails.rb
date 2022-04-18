@@ -1,3 +1,4 @@
+# validate emails for send emails for invoice
 class Invoice::SendEmails::ValidateEmails < Micro::Case
   attribute :params
   attribute :invoice

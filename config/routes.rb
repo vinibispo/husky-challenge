@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   modular_routes do
-    resources :invoices, only: %i[index new create show]
+    resources :invoices, only: %i[index new create show] do
+      put :send_emails, on: :member
+    end
 
     resources :users, only: %i[create] do
       get :register, on: :collection

@@ -1,5 +1,5 @@
 
-<%= form_with(model: user) do |form| %>
+<%= form_with(model: user, data: { turbo: false }) do |form| %>
   <% if user.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,12 +12,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="form-group">
+    <%= form.label :email, style: "display: block", class: "col-sm-2 control-label" %>
+    <%= form.text_field :email, class: 'form-control col-sm-10' %>
   </div>
 
-  <div>
-    <%= form.submit t(create_or_update(user), scope: 'forms.buttons.users') %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit t(create_or_update(user), scope: 'forms.buttons.users'), class: 'btn btn-primary', style: 'margin-top: 10px;' %>
+    </div>
   </div>
 <% end %>

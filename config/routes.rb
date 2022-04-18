@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   modular_routes do
     resources :invoices, only: %i[index new create show] do
-      get :logout, on: :collection
+      put :send_emails, on: :member
     end
 
     resources :users, only: %i[create] do
       get :register, on: :collection
     end
-    resources :tokens
+    resources :publics, only: [] do
+      get :home, on: :collection
+    end
     resources :sessions, only: %i[new create destroy]
   end
-  root 'tokens/index#call'
+
+  root 'publics/home#call'
 end

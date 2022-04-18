@@ -63,6 +63,14 @@ RSpec.describe "/invoices", type: :request do
           end
         end
       end
+
+      describe "PUT /send_emails" do
+        it 'should not succeed response' do
+          invoice = @user.invoices.create! valid_attributes
+          put send_emails_invoice_url(invoice), params: { invoice: { emails: 'test@example.org,test@no-example.org' } }
+          expect(response).to_not be_successful
+        end
+      end
     end
 
     describe "with no token" do
@@ -85,6 +93,13 @@ RSpec.describe "/invoices", type: :request do
       describe "GET /new" do
         it 'should not succeed response' do
           get new_invoice_url
+          expect(response).to_not be_successful
+        end
+      end
+      describe "PUT /send_emails" do
+        it 'should not succeed response' do
+          invoice = @user.invoices.create! valid_attributes
+          put send_emails_invoice_url(invoice), params: { invoice: { emails: 'test@example.org,test@no-example.org' } }
           expect(response).to_not be_successful
         end
       end
@@ -155,6 +170,30 @@ RSpec.describe "/invoices", type: :request do
           post invoices_url, params: { invoice: invalid_attributes }
           expect(response).to be_successful
         end
+      end
+    end
+
+    describe "PUT /send_emails" do
+      it 'should not succeed response when emails are blank' do
+        invoice = @user.invoices.create! valid_attributes
+
+        put send_emails_invoice_url(invoice), params: { invoice: { emails: '' } }
+
+        expect(response).to_not be_successful
+      end
+
+      it 'should not succeed when emails are not valid' do
+        invoice = @user.invoices.create! valid_attributes
+
+        put send_emails_invoice_url(invoice), params: { invoice: { emails: 'test' } }
+
+        expect(response).to_not be_successful
+      end
+
+      it 'should not succeen when invoice is not valid' do
+        put send_emails_invoice_url(1), params: { invoice: { emails: 'vini@google.com,test@google.com' } }
+
+        expect(response).to_not be_successful
       end
     end
 

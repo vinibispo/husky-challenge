@@ -1,0 +1,7 @@
+---
+en:
+  ransack:
+    attributes:
+      invoice:
+        invoice_date_gteq: Start Date
+        invoice_date_lteq: End Date

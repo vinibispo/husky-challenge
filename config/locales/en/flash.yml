@@ -12,6 +12,8 @@ en:
         success: Invoice was successfully updated. 
       destroy:
         success: Invoice was successfully destroyed.
+      send_emails:
+        success: Emails were successfully sent.
     users:
       create:
         success: Token was successfully generated. Plase verify your email because we have sent a token for accessing.

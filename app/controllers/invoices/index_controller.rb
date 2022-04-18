@@ -1,7 +1,7 @@
 # index controller for invoice
 class Invoices::IndexController < ApplicationController
   def call
-    ::Invoice::Fetch::Flow.call(token: session[:current_user_token])
+    ::Invoice::Fetch::Flow.call(token: session[:current_user_token], params:)
                           .on_failure(:invalid_attributes) { redirect_no_token_error }
                           .on_failure(:no_token) { |error| redirect_error(error[:message]) }
                           .on_success { |data| render_successfully(data) }
@@ -20,6 +20,6 @@ class Invoices::IndexController < ApplicationController
   end
 
   def render_successfully(data)
-    render 'invoices/index', locals: { invoices: data[:invoices] }
+    render 'invoices/index', locals: { invoices: data[:invoices], q: data[:q] }
   end
 end

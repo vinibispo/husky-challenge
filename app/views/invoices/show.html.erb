@@ -1,5 +1,24 @@
 
-<%= render 'invoices/invoice', invoice: invoice %>
+<div id="invoices" class="mt-4">
+  <%= render 'invoices/invoice', invoice: invoice %>
+  <% invoice.documents.each do |file| %>
+    <%= link_to rails_blob_path(file, disposition: 'attachment') do %>
+      Download invoice in pdf
+    <% end %>
+  <% end %>
+
+  <% if Current.user.id == invoice.user_id %>
+    <%= form_with(url: send_emails_invoice_url(invoice), scope: :invoice, method: :put) do |f| %>
+      <div class="form-group mt-3">
+        <%= f.label :emails, class: "col-sm-2 control-label" %>
+        <%= f.text_field :emails, class: "col-sm-10 form-control" %>
+      </div>
+      <div class="form-group mt-3">
+        <%= f.submit I18n.t("invoices.send_emails", scope: "forms.buttons"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "Back to invoices", invoices_path %>

@@ -1,4 +1,4 @@
-<%= form_with(model: session_model) do |f| %>
+<%= form_with(model: session_model, data: { turbo: false }) do |f| %>
   <div class="form-group">
     <%= f.label :token, style: 'display: block;', class: 'col-sm-2 control-label' %>
     <%= f.text_field :token, class: 'form-control col-sm-10' %>

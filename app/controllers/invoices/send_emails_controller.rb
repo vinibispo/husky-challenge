@@ -1,13 +1,13 @@
 class Invoices::SendEmailsController < ApplicationController
   def call
     Invoice::SendEmails::Flow
-                        .call(token: session[:current_user_token], params:)
-                        .on_failure(:invalid_attributes) { redirect_no_token_error }
-                        .on_failure(:no_token) { |error| redirect_error(error[:message]) }
-                        .on_failure(:no_emails) { |error| redirect_invoice_error(error[:message]) }
-                        .on_failure(:no_valid_emails) { |error| redirect_invoice_error(error[:message]) }
-                        .on_failure(:not_found) { render_not_found }
-                        .on_success { |result| redirect_invoices(result[:invoice]) }
+      .call(token: session[:current_user_token], params:)
+      .on_failure(:invalid_attributes) { redirect_no_token_error }
+      .on_failure(:no_token) { |error| redirect_error(error[:message]) }
+      .on_failure(:no_emails) { |error| redirect_invoice_error(error[:message]) }
+      .on_failure(:no_valid_emails) { |error| redirect_invoice_error(error[:message]) }
+      .on_failure(:not_found) { render_not_found }
+      .on_success { |result| redirect_invoices(result[:invoice]) }
   end
 
   private

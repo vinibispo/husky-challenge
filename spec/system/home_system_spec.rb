@@ -7,6 +7,6 @@ RSpec.describe "Home", type: :system do
     sign_in_as(user_token.token)
 
     visit '/'
-  expect(page).to have_current_path(invoices_path)
+    expect(page).to have_current_path(invoices_path)
   end
 end

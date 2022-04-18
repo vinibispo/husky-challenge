@@ -184,7 +184,7 @@ RSpec.describe "/invoices", type: :request do
 
       it 'should not succeed when emails are not valid' do
         invoice = @user.invoices.create! valid_attributes
-        
+
         put send_emails_invoice_url(invoice), params: { invoice: { emails: 'test' } }
 
         expect(response).to_not be_successful

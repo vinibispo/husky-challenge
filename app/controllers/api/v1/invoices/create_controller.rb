@@ -1,3 +1,4 @@
+# create controller for invoices in api
 class Api::V1::Invoices::CreateController < Api::V1::ApplicationController
   def call
     authenticate_or_request_with_http_token do |token|

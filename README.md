@@ -1,16 +1,5 @@
 # Husky Challenge
 
-Esse é um projeto base para te ajudar na solução do [desafio Husky](https://github.com/husky-misc/code-challenge/issues/33).
-
-Você vai encontrar um setup inicial da autenticação, controle das invoices e e-mail de notificação.
-
-A ideia aqui é dar um empurrão inicial para te ajudar nas implementações, mas... cuidado, esse empurrão pode não ser para a direção correta.
-
-O projeto foi implementado de uma forma bem básica, fazendo uso de uma abordagem diferente do que praticamos na Husky. Nós queremos ver justamente o seu processo de trabalho e decisões para melhorar a arquitetura e funcionamento da aplicação.
-
-> Dica: leve em consideração o que descrevemos nos tópicos `Solução`, `Expectativas` e `Contexto: O que utilizamos / fazemos na Husky` do [desafio](https://github.com/husky-misc/code-challenge/issues/33).
-
-**Importante:** você não precisa ficar preso a estrutra desse projeto. Sinta-se a vontade para modificar o que achar necessário. Ex: README, adicionar/modificar/remover dependências, arquivos e diretórios...
 
 ## Configuração
 
@@ -22,11 +11,22 @@ O projeto foi implementado de uma forma bem básica, fazendo uso de uma abordage
 - Node.js `>= 16.13.2`
   - npm `>= 8.0`
   - yarn `>= 1.22.0`
-- Postgresql
+- Postgresql 12
 
 ### Preparando ambiente de desenvolvimento
 
 1) Instale as dependências de ambiente.
+  - Instale o ruby `3.1.0` pelo seu gerenciador ruby
+  - Instale o  bundler na versão 2.3.4 utilizando `gem install bundler -v 2.3.4`
+  - Instale o nodejs na versão 16.13.2
+  - Instale o npm na versão 8.1.2
+  - Instale o yarn na versão 1.22.18
+  - Instale o postgres na versão 12 ou faça como eu e utilize o docker
+  ```sh
+  docker run --name husky-postgres -p 5432:5432 -e POSTGRES_PASSWORD=mypassword -d postgres:12
+  ```
+  - Instale as dependências do ruby usando `bundle install` ou apenas `bundle`
+  - Instale as dependências de javascript usando `yarn install --frozen-lockfile` ou apenas `yarn --frozen-lockfile`
 
 2) Crie o arquivo `config/master.key`.
 
@@ -40,6 +40,27 @@ chmod 600 config/master.key
 
 4) Configure o arquivo `config/database.yml`.
 
+Caso você tenha usado o docker como sugeri sua configuração ficará assim:
+```yml
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: mypassword
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: husky_challenge_development
+
+production:
+  <<: *default
+  database: husky_challenge_production
+  username: husky_challenge
+  password: <%= ENV["HUSKY_CHALLENGE_DATABASE_PASSWORD"] %>
+```
 5) Execute `bin/setup`
 
 ## Desenvolvimento

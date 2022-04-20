@@ -129,3 +129,12 @@ bin/rails spec
 - Deve ser possível enviar invoices para novos emails se o usuário está logado
 
 ---
+## Por que priorizei X em vez de Y?
+ Priorizei o desenvolvimento de testes pois precisamos garantir que a aplicação funciona sem bugs.
+ Priorizei segurança pois precisamos garantir que usuários distintos não possam mexer nas coisas de outro usuário.
+ Priorizei manutenibilidade para simular uma aplicação real onde vários desenvolvedores teriam que realizar mudanças no código.
+ Não priorizei performance por conta dos outros requisitos que no primeiro momento considero mais importantes eles do que esse (para essa aplicação ao menos).
+ Não priorizei disponibilidade, confiabilidade e observabilidade por conta que para isso precisaria fazer o deploy no heroku, porém precisaria cadastrar uma conta na aws ou outro serviço de cloud para armazenar os pdfs gerados.
+
+---
+

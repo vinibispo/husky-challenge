@@ -1,3 +1,4 @@
+# get record implementation for show for invoices verifying if is authorized
 class Invoice::Show::Authorized::GetRecord < Micro::Case
   attribute :user
   attribute :id

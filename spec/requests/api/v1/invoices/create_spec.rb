@@ -1,9 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/invoices/create', type: :request do
-
   path '/api/v1/invoices' do
-
     post('call create') do
       tags "Invoices"
       consumes "application/json"
@@ -23,7 +21,7 @@ RSpec.describe 'api/v1/invoices/create', type: :request do
         required: ['emails']
       }
       response(200, 'successful') do
-        let(:params) { { invoice: { emails: "vini@husky.io,vini@google.com"} } }
+        let(:params) { { invoice: { emails: "vini@husky.io,vini@google.com" } } }
 
         let(:user) { create(:user) }
         let(:user_token)  { create(:user_token, user:, confirmed_at: DateTime.now) }
@@ -42,7 +40,6 @@ RSpec.describe 'api/v1/invoices/create', type: :request do
       end
 
       response(422, 'unprocessable entity') do
-        
         let(:params) { { invoice: { emails: "" } } }
 
         let(:user) { create(:user) }
@@ -59,8 +56,6 @@ RSpec.describe 'api/v1/invoices/create', type: :request do
 
         let(:Authorization) { "Bearer t" }
         run_test!
-    
-
       end
     end
   end

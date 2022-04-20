@@ -1,9 +1,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/invoices/index', type: :request do
-
   path '/api/v1/invoices' do
-
     get('call index') do
       tags "Invoices"
       consumes "application/json"
@@ -21,7 +19,7 @@ RSpec.describe 'api/v1/invoices/index', type: :request do
 
       response(200, 'fetch invoices') do
         let(:user) { create(:user) }
-        let(:user_token)  { create(:user_token, user:, confirmed_at: DateTime.now) }
+        let(:user_token) { create(:user_token, user:, confirmed_at: DateTime.now) }
         let(:invoice) { create(:invoice) }
         security [Bearer: []]
 

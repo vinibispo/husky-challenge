@@ -8,7 +8,7 @@ class Invoice::Show::Authorized::GetRecord < Micro::Case
   def call!
     invoice = user.invoices.find(id)
     Success result: { invoice: }
-    rescue ActiveRecord::RecordNotFound
+  rescue ActiveRecord::RecordNotFound
     Failure :not_found
   end
 end

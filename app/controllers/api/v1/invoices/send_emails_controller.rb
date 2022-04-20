@@ -2,7 +2,7 @@ class Api::V1::Invoices::SendEmailsController < ApplicationController
   def call
     authenticate_or_request_with_http_token do |token|
       Invoice::SendEmails::Flow
-        .call(token: token, params:)
+        .call(token:, params:)
         .on_failure(:no_token) { render_unauthorized }
         .on_failure(:no_emails) { |error| render_error(error[:message]) }
         .on_failure(:no_valid_emails) { |error| render_error(error[:message]) }
@@ -12,6 +12,7 @@ class Api::V1::Invoices::SendEmailsController < ApplicationController
   end
 
   private
+
   def render_unauthorized
     head :unauthorized
   end

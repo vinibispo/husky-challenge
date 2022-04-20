@@ -1,7 +1,6 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/invoices/show', type: :request do
-
   path '/api/v1/invoices/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
@@ -22,7 +21,7 @@ RSpec.describe 'api/v1/invoices/show', type: :request do
       response(401, 'unauthorized') do
         let(:user) { create(:user) }
         let(:id) { '123' }
-        
+
         security [Bearer: []]
 
         let(:Authorization) { "Bearer t" }
@@ -31,11 +30,10 @@ RSpec.describe 'api/v1/invoices/show', type: :request do
       end
 
       response(200, 'success') do
-        
         let(:user) { create(:user) }
         let(:user_token) { create(:user_token, confirmed_at: DateTime.now, user:) }
         let(:invoice) { create(:invoice, user:) }
-          let(:id) { invoice.id }
+        let(:id) { invoice.id }
 
         security [Bearer: []]
 

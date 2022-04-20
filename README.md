@@ -172,3 +172,8 @@ Paradigmas utilizados:
   - Chain of Responsability (models que tem flow pois se uma parte falha
     os processos não continuam)
 
+Softwares utilizados:
+ - [Trello](https://trello.com) (para melhor estruturação de tarefas)
+ - [RubyCi](https://ruby.ci) (o melhor CI para Ruby que você verá na sua vida, além de ser super rápido e garantir que todos os testes passem, que a padronização também passa e que o código está manutenível)
+ - [Github](https://github.com) (para hospedagem do código, integração
+   com o RubyCi e gerenciamento de pull requests)

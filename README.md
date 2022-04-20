@@ -177,3 +177,28 @@ Softwares utilizados:
  - [RubyCi](https://ruby.ci) (o melhor CI para Ruby que você verá na sua vida, além de ser super rápido e garantir que todos os testes passem, que a padronização também passa e que o código está manutenível)
  - [Github](https://github.com) (para hospedagem do código, integração
    com o RubyCi e gerenciamento de pull requests)
+
+---
+
+## O que poderia ser melhorado?
+
+1. Atualmente o PDF é gerado no próprio servidor podendo travar o mesmo,
+   para não acontecer isso o pdf deve ser gerado usando background jobs
+2. Corrigir N+1 query: Devido performance não ter sido priorizada devo
+   ter deixado várias queries com N+1.
+3. Fazer deploy no heroku para conseguir ver a aplicação funcionando e
+   as pessoas usando.
+4. Usar o appsignal para a identificação de problemas de performance e
+   os erros que estão ocorrendo.
+5. Melhorar a escrita dos testes: devido ao fato do rswag criar testes
+   de um modo diferente a sentença arrange, act e assert foi
+   comprometida nos testes gerados por este.
+6. Adicionar turbo corretamente para melhor experiência do usuário:
+   atualmente só adicionei para o logout.
+7. Adicionar sidekiq ou resque como adapter dos background jobs: deixei
+   o padrão que veio o async.
+8. Deixar a aplicação mais responsiva: pelo foco não ser frontend desse
+   teste não me preocupei tanto com a responsividade
+9. Paginação: Todas as invoices pertencentes a determinados usuários
+   estão vindo na página (o que é ruim para a performance), para isso eu
+   adicionaria a gem pagy e paginaria os resultados

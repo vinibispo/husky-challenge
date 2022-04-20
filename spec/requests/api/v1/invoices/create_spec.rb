@@ -13,7 +13,6 @@ RSpec.describe 'api/v1/invoices/create', type: :request do
             invoice_number: { type: :integer },
             invoice_date: { type: :string },
             customer_name: { type: :string },
-            customer_name: { type: :string },
             total_amount_due: { type: :integer },
             emails: { type: :string }
           } }

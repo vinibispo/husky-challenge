@@ -76,3 +76,56 @@ bin/dev
 ```sh
 bin/rails spec
 ```
+## O que foi feito?
+---
+### Web:
+- Visitante:
+  - Gerar token de acesso
+  - Login via token
+- Gerar token de acesso:
+  - Geração de token com validação se é um email válido.
+  - Geração de um novo token se o usuário já existe.
+  - Envio da url "encriptada" pra link de ativação com Login
+
+- Login via token:
+  - Apresenta um campo de texto para o token e um botão para submeter o form e então acessar o sistema.
+  - Validação se um token foi tornado inusável, não confirmado ou apenas inválido
+
+- Usuário (fez login via token):
+  - Deve ser posível listar invoices (pelo número da invoice e pelas data)
+  - Visualizar invoice
+  - Criar e enviar invoice
+  - Logout
+
+- Criar e enviar invoice:
+  - Número da invoice (invoice_number)
+  - Data (invoice_date)
+  - Empresa (customer_notes e customer_name)
+  - Valor total (total_amount_due)
+  - Emails (emails)
+  - Ao criar a invoice o usuário deve ser redirecionado para tela de visualização que apresentará os dados da invoice
+  - Ao criar a invoice o usuário recebe um alerta informando que as invoices foram enviadas para os emails informados na criação
+
+- Envio de invoices:
+  - Corpo de email
+    - Link para visualização
+  - Anexo
+    - Versão da invoice como pdf
+
+- Visualização da invoice:
+  - Deve apresentar todos os dados da invoice
+  - Ação:
+    - Deve ser posível fazer o download da invoice como pdf
+    - Se logado:
+      - O usuário poderá enviar a invoice para novos emails
+
+---
+
+### Api
+
+- Deve ser possível listar as invoices por filtros como foi feito na web quando está usando o token de acesso nos headers
+- Deve ser possível visualizar a invoice se você criou ela e está logado
+- Deve ser possível criar e enviar invoice se você está logado
+- Deve ser possível enviar invoices para novos emails se o usuário está logado
+
+---

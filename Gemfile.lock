@@ -114,6 +114,8 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     kind (5.10.0)
     launchy (2.5.0)
       addressable (~> 2.7)
@@ -225,6 +227,15 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.11.0)
+    rswag-api (2.5.1)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.5.1)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.1)
+    rswag-ui (2.5.1)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     rubocop (1.27.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
@@ -312,6 +323,9 @@ DEPENDENCIES
   rails-env
   ransack
   rspec-rails (= 6.0.0.rc1)
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop-rails
   selenium-webdriver
   shoulda-matchers (~> 5.0)

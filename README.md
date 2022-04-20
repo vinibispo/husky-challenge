@@ -161,3 +161,14 @@ expect(model.invalid?).to be true
 )
 
 
+Paradigmas utilizados:
+- Utilizei Programação Orientada a Objetos com as classes criadas
+- Utilizei Programação Funcional com lambdas e a utilização de casos de uso (de acordo com [essa talk](https://www.youtube.com/watch?v=w1OwYWe4UFo))
+- Utilizei os design patterns:
+  - Singleton (Controller)
+  - Command (Controller e Models não pertencentes ao ActiveRecord)
+  - Strategy (Models não pertencentes ao ActiveRecord pois todos usam a
+    mesma interface)
+  - Chain of Responsability (models que tem flow pois se uma parte falha
+    os processos não continuam)
+

@@ -1,3 +1,4 @@
+# send emails controller for invoices in api
 class Api::V1::Invoices::SendEmailsController < ApplicationController
   def call
     authenticate_or_request_with_http_token do |token|

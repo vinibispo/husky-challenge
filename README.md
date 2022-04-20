@@ -138,3 +138,26 @@ bin/rails spec
 
 ---
 
+## Como foi feito? (Gems e Paradigmas)
+
+Das gems mais importantes pro desenvolvimento de novas funcionalidades foram:
+- [u-case](https://github.com/serradura/u-case) para criação de casos de uso numa forma padronizada
+- [url-signature](https://github.com/fnando/url_signature) para criação de url "encriptada" para o link de email
+- [modular_routes](https://github.com/vitoravelino/modular_routes) para criação de uma action por controller o que deixou os controllers mais limpos e mais manuteníveis.
+- [prawn](https://github.com/prawnpdf/prawn) para geração de pdfs
+  simples.
+- [ransack](https://github.com/activerecord-hackery/ransack) para buscas
+  sem precisar ter risco de sql injection
+- [rswag](https://github.com/rswag/rswag) para geração de documentação de api utilizando a openapi e fazendo isso gerando testes (confesso que não gostei muito de gerar os testes usando ela por conta de muito `let` que eu tive que usar)
+- [rspec-rails](https://github.com/rspec/rspec-rails) para criação e execução de testes automatizados
+- [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails)
+  para criação de factory ( basicamente serve para não precisar ficar fazendo
+  `Model.create(attr1: x, attr2: y)` toda hora)
+- [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) para criação de testes simples para models ( basicamente serve para não precisar ficar fazendo
+```ruby
+model = Model.new
+expect(model.invalid?).to be true
+```
+)
+
+

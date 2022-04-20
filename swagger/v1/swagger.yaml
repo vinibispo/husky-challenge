@@ -1,0 +1,119 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/invoices":
+    post:
+      summary: call create
+      tags:
+      - Invoices
+      parameters: []
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: unprocessable entity
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice:
+                  type: object
+                  properties:
+                    invoice_number:
+                      type: integer
+                    invoice_date:
+                      type: string
+                    customer_name:
+                      type: string
+                    total_amount_due:
+                      type: integer
+                    emails:
+                      type: string
+              required:
+              - emails
+    get:
+      summary: call index
+      tags:
+      - Invoices
+      security:
+      - Bearer: []
+      responses:
+        '401':
+          description: unauthorized when has no valid token
+        '200':
+          description: fetch invoices
+  "/api/v1/invoices/{id}/send_emails":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    - name: params
+      in: body
+      schema:
+        type: object
+        properties:
+          invoice:
+            type: object
+            properties:
+              emails:
+                type: string
+    put:
+      summary: call send_email
+      tags:
+      - Invoices
+      security:
+      - Bearer: []
+      responses:
+        '404':
+          description: not_found
+        '401':
+          description: unauthorized
+        '422':
+          description: unprocessable entity when has no valid emails
+        '200':
+          description: success
+  "/api/v1/invoices/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: call show
+      tags:
+      - Invoices
+      security:
+      - Bearer: []
+      responses:
+        '404':
+          description: not found
+        '401':
+          description: unauthorized
+        '200':
+          description: success
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+components:
+  securitySchemes:
+    Bearer:
+      description: Authorization necessary to use api calls
+      type: apiKey
+      name: Authorization
+      in: header
